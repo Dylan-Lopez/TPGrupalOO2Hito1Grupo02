@@ -1,0 +1,1 @@
+create database bd_hibernate_una_entidad;
