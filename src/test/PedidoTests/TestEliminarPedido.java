@@ -1,4 +1,4 @@
-package test;
+package test.PedidoTests;
 
 import datos.Pedido;
 import negocio.PedidoABM;

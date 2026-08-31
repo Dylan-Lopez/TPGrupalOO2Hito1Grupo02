@@ -1,4 +1,4 @@
-package test;
+package test.PedidoTests;
 
 import java.time.LocalDate;
 
