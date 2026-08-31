@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 public class Pedido {
+
 	private long idPedido;
 	private LocalDate fechaTransaccion;
 	private UnidadVenta unidadVenta;
@@ -12,19 +13,21 @@ public class Pedido {
 	public Pedido() {
 	}
 
-	public Pedido(LocalDate fechaTransaccion, UnidadVenta unidad) {
+	public Pedido(LocalDate fechaTransaccion,
+			UnidadVenta unidadVenta) throws Exception {
+
 		super();
-		this.fechaTransaccion = fechaTransaccion;
-		this.unidadVenta = unidad;
+		this.setFechaTransaccion(fechaTransaccion);
+		this.setUnidadVenta((unidadVenta));
+		
 	}
-
-	}
-
+	
+	
 	public long getIdPedido() {
 		return idPedido;
 	}
 
-	public void setIdPedido(long idPedido) {
+	protected void setIdPedido(long idPedido) {
 		this.idPedido = idPedido;
 	}
 
@@ -32,16 +35,26 @@ public class Pedido {
 		return fechaTransaccion;
 	}
 
-	public void setFechaTransaccion(LocalDate fechaTransaccion) {
-		this.fechaTransaccion = fechaTransaccion;
-	}
+	public void setFechaTransaccion(LocalDate fechaTransaccion) throws Exception {
 
+	    if (fechaTransaccion == null) {
+	        throw new Exception("La fecha de transacción es obligatoria");
+	    }
+
+	    this.fechaTransaccion = fechaTransaccion;
+	}
+	
 	public UnidadVenta getUnidadVenta() {
 		return unidadVenta;
 	}
 
-	public void setUnidadVenta(UnidadVenta unidadVenta) {
-		this.unidadVenta = unidadVenta;
+	public void setUnidadVenta(UnidadVenta unidadVenta) throws Exception {
+
+	    if (unidadVenta == null) {
+	        throw new Exception("La unidad de venta no puede ser null");
+	    }
+
+	    this.unidadVenta = unidadVenta;
 	}
 
 	public Set<DetallePedido> getLstDetalles() {
@@ -52,10 +65,13 @@ public class Pedido {
 		this.lstDetalles = lstDetalles;
 	}
 	
+	public void agregar(DetallePedido detalle) {
+		lstDetalles.add(detalle);
+	}
+	
 	@Override
 	public String toString() {
 		return "Pedido [idPedido=" + idPedido
 				+ ", fechaTransaccion=" + fechaTransaccion + "]";
 	}
-
 }
