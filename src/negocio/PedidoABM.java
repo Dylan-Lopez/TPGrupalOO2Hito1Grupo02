@@ -6,7 +6,6 @@ import dao.PedidoDao;
 import datos.Pedido;
 import datos.UnidadVenta;
 
-
 public class PedidoABM {
 
 	PedidoDao dao = new PedidoDao();
@@ -15,20 +14,13 @@ public class PedidoABM {
 		return dao.traer(idPedido);
 	}
 
-	public int agregar(LocalDate fechaTransaccion,
-			long idUnidad) throws Exception {
-		
-		 UnidadVentaABM unidadABM = new UnidadVentaABM();
+	public int agregar(LocalDate fechaTransaccion, long idUnidad) throws Exception {
 
-		    UnidadVenta unidad = unidadABM.traer(idUnidad);
+		UnidadVentaABM unidadABM = new UnidadVentaABM();
 
-		    if (unidad == null) {
-		        throw new Exception("No existe la UnidadVenta con id " + idUnidad);
-		    }
+		UnidadVenta unidad = unidadABM.traer(idUnidad);
 
-		Pedido p = new Pedido(
-				fechaTransaccion,
-				unidad);
+		Pedido p = new Pedido(fechaTransaccion, unidad);
 
 		return dao.agregar(p);
 	}
@@ -49,51 +41,36 @@ public class PedidoABM {
 	public Pedido traerPedidoYDetalles(long idPedido) {
 		return dao.traerPedidoYDetalles(idPedido);
 	}
-	
-	public List<Pedido> traerPedidosPorUnidad(
-	        long idUnidad) throws Exception {
 
-	    List<Pedido> pedidos =
-	            dao.traerPedidosPorUnidad(idUnidad);
+	public List<Pedido> traerPedidosPorUnidad(long idUnidad) throws Exception {
 
-	    if (pedidos == null || pedidos.isEmpty()) {
-	        throw new Exception(
-	            "No existen pedidos para la unidad " + idUnidad);
-	    }
+		List<Pedido> pedidos = dao.traerPedidosPorUnidad(idUnidad);
 
-	    return pedidos;
+		if (pedidos == null || pedidos.isEmpty()) {
+			throw new Exception("No existen pedidos para la unidad " + idUnidad);
+		}
+
+		return pedidos;
 	}
-	
-	public List<Pedido> traerPedidosPorUnidadEntreFechas(
-	        long idUnidad,
-	        LocalDate fechaDesde,
-	        LocalDate fechaHasta) throws Exception {
 
-	    if (fechaDesde == null || fechaHasta == null) {
-	        throw new Exception("Las fechas no pueden ser null");
-	    }
+	public List<Pedido> traerPedidosPorUnidadEntreFechas(long idUnidad, LocalDate fechaDesde, LocalDate fechaHasta)
+			throws Exception {
 
-	    if (fechaDesde.isAfter(fechaHasta)) {
-	        throw new Exception(
-	                "La fecha desde no puede ser posterior a la fecha hasta");
-	    }
+		if (fechaDesde == null || fechaHasta == null) {
+			throw new Exception("Las fechas no pueden ser null");
+		}
 
-	    List<Pedido> pedidos =
-	            dao.traerPedidosPorUnidadEntreFechas(
-	                    idUnidad,
-	                    fechaDesde,
-	                    fechaHasta);
+		if (fechaDesde.isAfter(fechaHasta)) {
+			throw new Exception("La fecha desde no puede ser posterior a la fecha hasta");
+		}
 
-	    if (pedidos == null || pedidos.isEmpty()) {
-	        throw new Exception(
-	                "No existen pedidos para la unidad " +
-	                idUnidad +
-	                " entre " +
-	                fechaDesde +
-	                " y " +
-	                fechaHasta);
-	    }
+		List<Pedido> pedidos = dao.traerPedidosPorUnidadEntreFechas(idUnidad, fechaDesde, fechaHasta);
 
-	    return pedidos;
+		if (pedidos == null || pedidos.isEmpty()) {
+			throw new Exception(
+					"No existen pedidos para la unidad " + idUnidad + " entre " + fechaDesde + " y " + fechaHasta);
+		}
+
+		return pedidos;
 	}
 }
