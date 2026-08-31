@@ -1,6 +1,6 @@
 //Caso de Uso - Uno a Muchos - Ulises Matias Izquierdo
 //Traer todos los pedidos de una UnidadVenta entre fechas determinadas.
-package test;
+package test.PedidoTests;
 
 import java.time.LocalDate;
 import java.util.List;
