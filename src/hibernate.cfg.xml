@@ -20,7 +20,6 @@
 		<mapping resource="mapeos/Cliente.hbm.xml" />
 		<mapping resource="mapeos/Costo.hbm.xml" />
 		<mapping resource="mapeos/Personal.hbm.xml" />
-		<mapping resource="mapeos/Personal.hbm.xml" />
 		<mapping resource="mapeos/Plato.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
