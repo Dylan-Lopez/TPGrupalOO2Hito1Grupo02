@@ -1,4 +1,4 @@
-package test.testPersonal;
+package test.PersonalTests;
 
 import negocio.PersonalABM;
 import datos.Cajero;
