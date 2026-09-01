@@ -1,4 +1,4 @@
-package test.testPersonal;
+package test.PersonalTests;
 
 import datos.Personal;
 import datos.Cocinero;

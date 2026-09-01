@@ -1,4 +1,4 @@
-package test.testPersonal;
+package test.PersonalTests;
 
 import java.time.LocalDate;
 import negocio.PersonalABM;
