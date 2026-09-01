@@ -1,4 +1,4 @@
-package test.PedidoTests;
+/*package test.PedidoTests;
 
 import java.time.LocalDate;
 
@@ -14,4 +14,4 @@ public class TestAgregarPedido {
 
         System.out.printf( "Id Pedido agregado: %d\n",idPedido);
     }
-}
+}*/

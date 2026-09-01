@@ -1,3 +1,5 @@
+/*
+
 package dao;
 
 import java.util.List;
@@ -187,3 +189,4 @@ public class PedidoDao {
 	    return lista;
 	}
 }
+*/

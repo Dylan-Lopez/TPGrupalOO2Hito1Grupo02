@@ -1,4 +1,4 @@
-package test.PedidoTests;
+/*package test.PedidoTests;
 
 import datos.Pedido;
 import negocio.PedidoABM;
@@ -24,3 +24,4 @@ public class TestEliminarPedido {
     }
 }
 
+*/
