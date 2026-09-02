@@ -61,6 +61,14 @@
 				type="string"
 				not-null="true" />
 		</joined-subclass>
+		
+		<!--
+		<generator class="foreign">
+			<param name="property">unidad_venta</param>
+		</generator>
+		-->
+		
+		<!-- <many-to-one name="unidad_venta" class="datos.UnidadVenta" column="id_unidad_venta" not-null="true"/> -->
 
 	</class>
 
