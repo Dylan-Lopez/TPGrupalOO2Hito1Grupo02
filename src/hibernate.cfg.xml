@@ -20,6 +20,11 @@
 		<mapping resource="mapeos/Cliente.hbm.xml" />
 		<mapping resource="mapeos/Costo.hbm.xml" />
 		<mapping resource="mapeos/Personal.hbm.xml" />
+<<<<<<< HEAD
 		<mapping resource="mapeos/UnidadVenta.hbm.xml" />
+=======
+		<mapping resource="mapeos/Plato.hbm.xml" />
+		<mapping resource="mapeos/Festival.hbm.xml" />
+>>>>>>> refs/remotes/origin/develop
 	</session-factory>
 </hibernate-configuration>

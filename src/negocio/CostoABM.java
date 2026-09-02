@@ -12,5 +12,8 @@ public class CostoABM {
 		return dao.traerCosto(idCosto);
 	}
 	
-	
+	public int agregar(float costoSuperficie, float costoMontaje, float plusElectricidad) {
+		Costo c = new Costo(costoSuperficie, costoMontaje, plusElectricidad);
+		return dao.agregar(c);
+	}
 }
