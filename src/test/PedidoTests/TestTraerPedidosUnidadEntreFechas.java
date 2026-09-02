@@ -1,5 +1,3 @@
-//Caso de Uso - Uno a Muchos - Ulises Matias Izquierdo
-//Traer todos los pedidos de una UnidadVenta entre fechas determinadas.
 package test.PedidoTests;
 
 import java.time.LocalDate;
@@ -16,22 +14,9 @@ public class TestTraerPedidosUnidadEntreFechas {
 
         try {
 
-            long idUnidad = 1L;
+            List<Pedido> pedidos = abm.traerPedidosPorUnidadEntreFechas(1L,LocalDate.of(2026, 8, 15),LocalDate.of(2026, 8, 17));
 
-            LocalDate fechaDesde =
-                    LocalDate.of(2026, 8, 1);
-
-            LocalDate fechaHasta =
-                    LocalDate.of(2026, 8, 31);
-
-            List<Pedido> pedidos =
-                    abm.traerPedidosPorUnidadEntreFechas(
-                            idUnidad,
-                            fechaDesde,
-                            fechaHasta);
-
-            System.out.println(
-                    "Pedidos encontrados:\n");
+            System.out.println("Pedidos encontrados:\n");
 
             for (Pedido pedido : pedidos) {
                 System.out.println(pedido);

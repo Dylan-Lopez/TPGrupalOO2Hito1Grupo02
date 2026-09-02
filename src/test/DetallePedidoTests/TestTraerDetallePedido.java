@@ -9,9 +9,13 @@ public class TestTraerDetallePedido {
 
 		DetallePedidoABM abm = new DetallePedidoABM();
 
-		DetallePedido detalle = abm.traer(1L);
+		try {
+		DetallePedido detalle = abm.traer(4L);
 
 		System.out.println("DetallePedido:");
 		System.out.println(detalle);
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 	}
 }

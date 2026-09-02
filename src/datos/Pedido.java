@@ -27,7 +27,13 @@ public class Pedido {
 		return idPedido;
 	}
 
-	protected void setIdPedido(long idPedido) {
+	protected void setIdPedido(long idPedido) throws Exception {
+		
+		if (idPedido <= 0) {
+			throw new Exception("El id del pedido debe ser mayor a cero");
+		}
+			
+		
 		this.idPedido = idPedido;
 	}
 

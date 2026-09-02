@@ -1,8 +1,9 @@
 package test.DetallePedidoTests;
 
+import datos.DetallePedido;
 import negocio.DetallePedidoABM;
 
-public class TestEliminarDetallePedido {
+public class TestTraerDetallesPorPlato {
 
 	public static void main(String[] args) {
 
@@ -10,11 +11,11 @@ public class TestEliminarDetallePedido {
 
 		try {
 
-			long idDetalle = 3L;
+			System.out.println("--- Detalles que contienen el plato ---");
 
-			abm.eliminar(idDetalle);
-
-			System.out.println("Detalle_Pedido eliminado correctamente.");
+			for (DetallePedido detalle : abm.traerPorPlato(2L)) {
+				System.out.println(detalle);
+			}
 
 		} catch (Exception e) {
 
