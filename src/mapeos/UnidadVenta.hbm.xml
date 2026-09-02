@@ -62,6 +62,22 @@
 			type="float" 
 			not-null="true"/>
 	</joined-subclass>
-	
+		<!-- Relacion muchos a muchos con festival -->
+		<!-- 
+			<set name="festivales"
+			table="festivalxunidad"
+			inverse="true"
+			outer-join="true">
+			
+			<key
+			column="id_unidad_venta"
+			/>
+			<many-to-many
+				column="idFestival"
+				class="datos.Festival"
+			/>
+		
+			</set>
+	-->
 	</class>
 </hibernate-mapping>
