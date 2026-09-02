@@ -2,13 +2,13 @@ package datos;
 
 import java.util.Set;
 
-public class UnidadVenta {
-	private int idUnidadVenta;
-	private String nombreComercial;
-	private float superficie;
-	private String codigo;
-	private Personal responsable;
-	private Set<Personal> lstStaff;
+public abstract class UnidadVenta {
+	protected int idUnidadVenta;
+	protected String nombreComercial;
+	protected float superficie;
+	protected String codigo;
+	protected Personal responsable;
+	protected Set<Personal> lstStaff;
 	//private Set<Plato> lstPlatos;
 	//private Set<Pedido> lstPedidos;
 	
@@ -22,13 +22,12 @@ public class UnidadVenta {
 		this.superficie = superficie;
 		this.codigo = codigo;
 		this.responsable = responsable;
-		
 	}
 	
-	public int getId() {
+	public int getIdUnidadVenta() {
 		return idUnidadVenta;
 	}
-	protected void setId(int idUnidadVenta) {
+	protected void setIdUnidadVenta(int idUnidadVenta) {
 		this.idUnidadVenta = idUnidadVenta;
 	}
 	public String getNombreComercial() {
@@ -53,7 +52,7 @@ public class UnidadVenta {
 		return responsable;
 	}
 	public void setResponsable(Personal responsable) {
-		responsable = responsable;
+		this.responsable = responsable;
 	}
 	public Set<Personal> getLstStaff() {
 		return lstStaff;

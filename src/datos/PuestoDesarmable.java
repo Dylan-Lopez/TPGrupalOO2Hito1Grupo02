@@ -3,21 +3,21 @@ package datos;
 public class PuestoDesarmable extends UnidadVenta{
 	
 	private int cantidadCarpas;
-	private int timepoMontaje;
+	private float tiempoMontaje;
 	
 	public PuestoDesarmable() {
 		//vacio
 	}
 	
-	public PuestoDesarmable(String nombreComercial, float superficie, String codigo, Personal responsable, int cantidadCarpas, int tiempoMontaje) {
+	public PuestoDesarmable(String nombreComercial, float superficie, String codigo, Personal responsable, int cantidadCarpas, float tiempoMontaje) {
 		super(nombreComercial, superficie, codigo, responsable);
 		this.cantidadCarpas = cantidadCarpas;
-		this.timepoMontaje = timepoMontaje;
+		this.tiempoMontaje = tiempoMontaje;
 	}
 	
 	@Override
 	public String toString() {
-		return "PuestoDesarmable [cantidadCarpas=" + cantidadCarpas + ", timepoMontaje=" + timepoMontaje + "]";
+		return "PuestoDesarmable [cantidadCarpas=" + cantidadCarpas + ", timepoMontaje=" + tiempoMontaje + "]";
 	}
 	public int getCantidadCarpas() {
 		return cantidadCarpas;
@@ -25,11 +25,11 @@ public class PuestoDesarmable extends UnidadVenta{
 	public void setCantidadCarpas(int cantidadCarpas) {
 		this.cantidadCarpas = cantidadCarpas;
 	}
-	public int getTimepoMontaje() {
-		return timepoMontaje;
+	public float getTiempoMontaje() {
+		return tiempoMontaje;
 	}
-	public void setTimepoMontaje(int timepoMontaje) {
-		this.timepoMontaje = timepoMontaje;
+	public void setTiempoMontaje(int tiempoMontaje) {
+		this.tiempoMontaje = tiempoMontaje;
 	}
 
 }
