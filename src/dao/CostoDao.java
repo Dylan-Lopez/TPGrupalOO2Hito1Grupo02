@@ -41,5 +41,19 @@ public class CostoDao {
 		
 	}
 	
+	public int agregar(Costo objeto) {
+	    int id = 0;
+	    try {
+	        iniciarOperacion();
+	        id = Integer.parseInt(session.save(objeto).toString());
+	        tx.commit();
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	    } finally {
+	        session.close();
+	    }
+	    return id;
+	}
+	
 	
 }

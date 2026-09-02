@@ -21,5 +21,6 @@
 		<mapping resource="mapeos/Costo.hbm.xml" />
 		<mapping resource="mapeos/Personal.hbm.xml" />
 		<mapping resource="mapeos/Plato.hbm.xml" />
+		<mapping resource="mapeos/Festival.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
