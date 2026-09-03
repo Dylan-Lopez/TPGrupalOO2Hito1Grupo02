@@ -14,7 +14,7 @@ public class TestAgregarPedido {
 
             int idPedido = pedidoABM.agregar(
                 LocalDate.of(2026, 8, 20),
-                1L
+                1
             );
 
             System.out.printf(

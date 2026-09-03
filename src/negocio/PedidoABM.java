@@ -26,7 +26,7 @@ public class PedidoABM {
 		return pedido;
 	}
 
-	public int agregar(LocalDate fechaTransaccion, long idUnidad) throws Exception {
+	public int agregar(LocalDate fechaTransaccion, int idUnidad) throws Exception {
 
 		
 		UnidadVentaABM unidadABM = new UnidadVentaABM();

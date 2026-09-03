@@ -49,7 +49,7 @@
 	/>
 	</set>
 	
-	<set name="lstStaff" table="personal" order-by="idPersonal" inverse="true" lazy="true" fetch="select">
+	<set name="lstStaff" table="personal" order-by="idPersonal" inverse="false" lazy="true" fetch="select">
 		<key column="id_unidad_venta" not-null="false"/>
 		<one-to-many class="datos.Personal"/>
 	</set>
