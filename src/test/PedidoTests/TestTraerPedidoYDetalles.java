@@ -12,7 +12,7 @@ public class TestTraerPedidoYDetalles {
 		
 		try {
 
-		long idPedido = 2L;
+		long idPedido = 1L;
 
 		Pedido pedido = abm.traerPedidoYDetalles(idPedido);
 
