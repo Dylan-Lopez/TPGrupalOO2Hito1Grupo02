@@ -15,7 +15,7 @@ public class TestAgregarFestivalAUnidad {
 			FestivalABM festivalABM = new FestivalABM();
 
 			// Traer la unidad y el festival existentes
-			UnidadVenta unidad = unidadABM.traer(1);
+			UnidadVenta unidad = unidadABM.traerUnidadYFestivales(1);
 			Festival festival = festivalABM.traer(1);
 
 			// Agregar el festival a la unidad

@@ -93,4 +93,12 @@ public class UnidadVentaABM {
 	public UnidadVenta traerUnidadYStaff(int idUnidadVenta) {
 		return dao.traerUnidadYStaff(idUnidadVenta);
 	}
+
+	public UnidadVenta traerUnidadYFestivales(int idUnidadVenta) throws Exception {
+		UnidadVenta unidad = dao.traerUnidadYFestivales(idUnidadVenta);
+		if (unidad == null) {
+			throw new Exception("No existe una Unidad de Venta con id: " + idUnidadVenta);
+		}
+		return unidad;
+	}
 }
