@@ -166,7 +166,7 @@ public class PedidoDao {
 
 	        lista = session.createQuery(
 	                "from Pedido p " +
-	                "where p.unidadVenta.idUnidad = :idUnidad " +
+	                "where p.unidadVenta.idUnidadVenta = :idUnidad " +
 	                "and p.fechaTransaccion between :fechaDesde and :fechaHasta " +
 	                "order by p.fechaTransaccion asc",
 	                Pedido.class)
