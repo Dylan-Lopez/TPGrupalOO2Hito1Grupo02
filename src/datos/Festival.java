@@ -12,7 +12,7 @@ public class Festival {
 	private LocalDate fechaInicio;
 	private LocalDate fechaFin;
 	private Costo costo;
-	private Set<UnidadVenta> listaUnidadesVenta;
+	private Set<UnidadVenta> unidadesVenta;
 	
 	public Festival() {}
 	
@@ -73,12 +73,12 @@ public class Festival {
 		this.costo = costo;
 	}
 	
-	public Set<UnidadVenta> getListaUnidadesVenta() {
-		return listaUnidadesVenta;
+	public Set<UnidadVenta> getUnidadesVenta() {
+		return unidadesVenta;
 	}
 
-	public void setListaUnidadesVenta(Set<UnidadVenta> listaUnidadesVenta) {
-		this.listaUnidadesVenta = listaUnidadesVenta;
+	public void setUnidadesVenta(Set<UnidadVenta> listaUnidadesVenta) {
+		this.unidadesVenta = listaUnidadesVenta;
 	}
 	
     @Override

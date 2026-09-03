@@ -9,6 +9,7 @@ public abstract class UnidadVenta {
 	protected String codigo;
 	protected Personal responsable;
 	protected Set<Personal> lstStaff;
+	protected Set<Festival> festivales;
 	//private Set<Plato> lstPlatos;
 	//private Set<Pedido> lstPedidos;
 	
@@ -60,6 +61,16 @@ public abstract class UnidadVenta {
 	public void setLstStaff(Set<Personal> lstStaff) {
 		this.lstStaff = lstStaff;
 	}
+	
+	public Set<Festival> getFestivales() {
+		return festivales;
+	}
+
+	public void setFestivales(Set<Festival> festivales) {
+		this.festivales = festivales;
+	}
+	
+	
 	/*public Set<Plato> getLstPlatos() {
 	
 		return lstPlatos;
@@ -75,5 +86,4 @@ public abstract class UnidadVenta {
 				+ /*lstPlatos + */"]";
 	}
 
-		
 }
