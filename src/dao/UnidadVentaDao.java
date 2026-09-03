@@ -178,4 +178,20 @@ public class UnidadVentaDao {
 		return objeto;
 	}
 
+	public UnidadVenta traerUnidadYFestivales(int idUnidadVenta) throws HibernateException {
+		UnidadVenta objeto = null;
+		try {
+			iniciaOperacion();
+			objeto = session.get(UnidadVenta.class, idUnidadVenta);
+			if (objeto != null) {
+				Hibernate.initialize(objeto.getFestivales());
+			}
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return objeto;
+	}
+
 }
