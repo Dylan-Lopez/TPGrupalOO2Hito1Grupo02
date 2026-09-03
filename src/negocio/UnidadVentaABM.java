@@ -61,8 +61,16 @@ public class UnidadVentaABM {
 		dao.eliminar(u);
 	}
 
-	public UnidadVenta traer(int idUnidadVenta) {
-		return dao.traer(idUnidadVenta);
+	//Nuevo
+	public UnidadVenta traer(int idUnidad) throws Exception {
+
+		UnidadVenta unidad = dao.traer(idUnidad);
+
+		if (unidad == null) {
+			throw new Exception("No existe una Unidad de Venta con id: " + idUnidad);
+		}
+
+		return unidad;
 	}
 
 	public List<UnidadVenta> traer() {
