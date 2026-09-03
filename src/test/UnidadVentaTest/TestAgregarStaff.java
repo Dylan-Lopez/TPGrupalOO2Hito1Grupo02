@@ -1,7 +1,5 @@
 package test.UnidadVentaTest;
 
-import java.util.HashSet;
-
 import datos.Personal;
 import datos.UnidadVenta;
 import negocio.PersonalABM;
@@ -16,18 +14,27 @@ public class TestAgregarStaff {
 
 		try {
 
-			UnidadVenta unidad = unidadABM.traer(1);
-			Personal personal = personalABM.traer(2L);
+			UnidadVenta unidad =
+					unidadABM.traerUnidadYStaff(1);
 
-			if (unidad.getLstStaff() == null) {
-				unidad.setLstStaff(new HashSet<Personal>());
+			Personal personal =
+					personalABM.traer(2L);
+
+			if (unidad == null) {
+				throw new Exception("No existe la unidad.");
+			}
+
+			if (personal == null) {
+				throw new Exception("No existe el personal.");
 			}
 
 			unidad.getLstStaff().add(personal);
 
 			unidadABM.modificar(unidad);
 
-			System.out.println("Personal agregado al staff correctamente.");
+			System.out.println(
+					"Personal agregado al staff correctamente."
+			);
 
 			for (Personal integrante : unidad.getLstStaff()) {
 				System.out.println(integrante);
