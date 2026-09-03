@@ -1,5 +1,4 @@
 package datos;
-/*
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -81,4 +80,3 @@ public class Pedido {
 				+ ", fechaTransaccion=" + fechaTransaccion + "]";
 	}
 }
-*/
