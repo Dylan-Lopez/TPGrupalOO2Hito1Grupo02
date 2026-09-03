@@ -153,4 +153,27 @@ public class UnidadVentaDao {
 		return lista;
 	}
 
+	//Nuevo
+	public UnidadVenta traerUnidadYStaff(int idUnidadVenta) throws HibernateException {
+
+		UnidadVenta objeto = null;
+
+		try {
+
+			iniciaOperacion();
+
+			objeto = session.get(UnidadVenta.class, idUnidadVenta);
+
+			if (objeto != null) {
+				Hibernate.initialize(objeto.getLstStaff());
+			}
+
+		} finally {
+
+			session.close();
+		}
+
+		return objeto;
+	}
+
 }
