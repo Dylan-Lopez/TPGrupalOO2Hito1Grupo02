@@ -13,7 +13,7 @@ public class TestTraerDetallesPorPlato {
 
 			System.out.println("--- Detalles que contienen el plato ---");
 
-			for (DetallePedido detalle : abm.traerPorPlato(2L)) {
+			for (DetallePedido detalle : abm.traerPorPlato(2)) {
 				System.out.println(detalle);
 			}
 
