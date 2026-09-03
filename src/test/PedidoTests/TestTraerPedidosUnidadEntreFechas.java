@@ -17,7 +17,7 @@ public class TestTraerPedidosUnidadEntreFechas {
 
         try {
 
-            int idUnidad = 1L;
+            int idUnidad = 1;
 
             LocalDate fechaDesde = LocalDate.of(2026, 8, 1);
             LocalDate fechaHasta = LocalDate.of(2026, 8, 31);
