@@ -36,10 +36,27 @@ public class UnidadVentaABM {
 	}
 
 	public void eliminar(int idUnidadVenta) throws Exception {
+
 		UnidadVenta u = dao.traer(idUnidadVenta);
+
 		if (u == null) {
-			throw new Exception("ERROR no existe Unidad de Venta con ID: " + idUnidadVenta);
+			throw new Exception(
+				"ERROR no existe Unidad de Venta con ID: " + idUnidadVenta
+			);
 		}
+
+		PedidoABM pedidoABM = new PedidoABM();
+
+		List<Pedido> pedidos =
+				pedidoABM.traerPedidosPorUnidad(idUnidadVenta);
+
+		//nuevo
+		if (pedidos != null && !pedidos.isEmpty()) {
+			throw new Exception(
+				"No se puede eliminar la unidad porque tiene pedidos asociados"
+			);
+		}
+
 		dao.eliminar(u);
 	}
 
