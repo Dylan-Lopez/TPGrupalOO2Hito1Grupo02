@@ -7,6 +7,7 @@ import datos.FoodTruck;
 import datos.Personal;
 import datos.PuestoDesarmable;
 import datos.UnidadVenta;
+import datos.Pedido;
 
 public class UnidadVentaABM {
 
