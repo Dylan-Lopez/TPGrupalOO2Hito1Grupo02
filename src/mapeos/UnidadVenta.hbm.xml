@@ -26,9 +26,12 @@
 		type="string" 
 		not-null="true"/>
 		
-	<one-to-one name="responsable" 
-		class="datos.Personal"> 
-	</one-to-one>
+	<!-- Responsable -->
+	<many-to-one
+	    name="responsable"
+	    class="datos.Personal"
+	    column="id_responsable"
+	    not-null="false"/>
 	
 		<!-- Relacion muchos a muchos con festival -->
 
@@ -46,8 +49,8 @@
 	/>
 	</set>
 	
-	<set name="lstStaff" table="personal" order-by="idPersonal" inverse="true" lazy="true" fetch="select">
-		<key column="id_unidad_venta" not-null="true"/>
+ 	<set name="lstStaff" table="personal" order-by="idPersonal" inverse="true" lazy="true" fetch="select">
+		<key column="id_unidad_venta" not-null="false"/>
 		<one-to-many class="datos.Personal"/>
 	</set>
 	
