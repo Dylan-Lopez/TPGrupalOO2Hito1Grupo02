@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping>
+	<class name="datos.UnidadVenta" table="unidad_venta">
+	<!--  ID  -->
+	<id name="idUnidadVenta" column="id_unidad_venta">
+		<generator class="identity"/>
+	</id>
+	
+	<!--  Atributos - Columnas  -->
+	<property name="nombreComercial" 
+		column="nombre_comercial" 
+		type="string" 
+		not-null="true"/>
+	
+	<property name="superficie" 
+		column="superficie" 
+		type="float" 
+		not-null="true"/>
+		
+	<property name="codigo" 
+		column="codigo" 
+		type="string" 
+		not-null="true"/>
+		
+	<one-to-one name="responsable" 
+		class="datos.Personal"> 
+	</one-to-one>
+	
+	<set name="lstStaff" table="personal" order-by="idPersonal" inverse="true" lazy="true" fetch="select">
+		<key column="id_unidad_venta" not-null="true"/>
+		<one-to-many class="datos.Personal"/>
+	</set>
+	
+	<joined-subclass name="datos.FoodTruck" 
+		table="food_truck">
+		<key column="id_food_truck"/>
+		<property name="patente" 
+			column="patente" 
+			type="string" 
+			not-null="true"/>
+		<property 
+			name="conexionElectrica" 
+			column="conexion_electrica" 
+			type="boolean" 
+			not-null="true"/>
+	</joined-subclass>
+	
+	<!--  Herencia: PuestoDesarmable  -->
+	<joined-subclass name="datos.PuestoDesarmable" 
+		table="puesto_desarmable">
+		<key column="id_puesto_desarmable"/>
+		<property name="cantidadCarpas" 
+			column="cantidad_carpas" 
+			type="integer" 
+			not-null="true"/>
+		<property name="tiempoMontaje" 
+			column="tiempo_montaje" 
+			type="float" 
+			not-null="true"/>
+	</joined-subclass>
+		<!-- Relacion muchos a muchos con festival -->
+		<!-- 
+			<set name="festivales"
+			table="festivalxunidad"
+			inverse="true"
+			outer-join="true">
+			
+			<key
+			column="id_unidad_venta"
+			/>
+			<many-to-many
+				column="idFestival"
+				class="datos.Festival"
+			/>
+		
+			</set>
+	-->
+	</class>
+</hibernate-mapping>
