@@ -30,21 +30,21 @@
 		class="datos.Personal"> 
 	</one-to-one>
 	
-			<!-- Relacion muchos a muchos con festival -->
+		<!-- Relacion muchos a muchos con festival -->
 
-		<set name="festivales"
-		table="festivalxunidad"
-		inverse="true"
-		outer-join="true">
-		
-		<key
-		column="id_unidad_venta"
-		/>
-		<many-to-many
-			column="idFestival"
-			class="datos.Festival"
-		/>
-		</set>
+	<set name="festivales"
+	table="festivalxunidad"
+	inverse="true"
+	outer-join="true">
+	
+	<key
+	column="id_unidad_venta"
+	/>
+	<many-to-many
+		column="idFestival"
+		class="datos.Festival"
+	/>
+	</set>
 	
 	<set name="lstStaff" table="personal" order-by="idPersonal" inverse="true" lazy="true" fetch="select">
 		<key column="id_unidad_venta" not-null="true"/>
