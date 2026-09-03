@@ -62,4 +62,9 @@ public class UnidadVentaABM {
 	public UnidadVenta traerPorCodigo(String codigo) {
 		return dao.traerPorCodigo(codigo);
 	}
+
+	//Nuevo
+	public UnidadVenta traerUnidadYStaff(int idUnidadVenta) {
+		return dao.traerUnidadYStaff(idUnidadVenta);
+	}
 }
