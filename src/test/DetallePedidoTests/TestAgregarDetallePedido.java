@@ -17,10 +17,10 @@ public class TestAgregarDetallePedido {
 		try {
 
 			// Traemos el pedido existente
-			Pedido pedido = pedidoABM.traer(5L);
+			Pedido pedido = pedidoABM.traer(1L);
 
 			// Traemos el plato existente
-			Plato plato = platoABM.traer(2L);
+			Plato plato = platoABM.traer(2);
 
 			// Agregamos el detalle directamente
 			int idDetalle = detalleABM.agregar(plato, 5, pedido);
