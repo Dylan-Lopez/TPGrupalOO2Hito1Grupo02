@@ -18,6 +18,7 @@ public class Festival {
 	
 	public Festival(String nombre, String temporada, LocalDate fechaInicio, LocalDate fechaFin, Costo costo)
 	{
+		super();
         this.nombre = nombre;
         this.temporada = temporada;
         this.fechaInicio = fechaInicio;

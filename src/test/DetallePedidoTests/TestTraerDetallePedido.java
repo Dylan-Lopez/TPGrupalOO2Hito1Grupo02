@@ -10,7 +10,7 @@ public class TestTraerDetallePedido {
 		DetallePedidoABM abm = new DetallePedidoABM();
 
 		try {
-		DetallePedido detalle = abm.traer(4L);
+		DetallePedido detalle = abm.traer(1L);
 
 		System.out.println("DetallePedido:");
 		System.out.println(detalle);

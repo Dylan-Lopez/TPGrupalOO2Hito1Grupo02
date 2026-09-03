@@ -10,8 +10,8 @@ public abstract class UnidadVenta {
 	protected Personal responsable;
 	protected Set<Personal> lstStaff;
 	protected Set<Festival> festivales;
-	//private Set<Plato> lstPlatos;
-	//private Set<Pedido> lstPedidos;
+	private Set<Plato> lstPlatos;
+	private Set<Pedido> lstPedidos;
 	
 	public UnidadVenta() {
 		//Constructor vacio
@@ -71,14 +71,14 @@ public abstract class UnidadVenta {
 	}
 	
 	
-	/*public Set<Plato> getLstPlatos() {
+	public Set<Plato> getLstPlatos() {
 	
 		return lstPlatos;
 	}
 	public void setLstPlatos(Set<Plato> lstPlatos) {
 		this.lstPlatos = lstPlatos;
 	}
-	*/
+	
 	@Override
 	public String toString() {
 		return "UnidadVenta [id=" + idUnidadVenta + ", nombreComercial=" + nombreComercial + ", superficie=" + superficie
