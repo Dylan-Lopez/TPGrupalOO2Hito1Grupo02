@@ -78,6 +78,21 @@ public abstract class UnidadVenta {
 	public void setLstPlatos(Set<Plato> lstPlatos) {
 		this.lstPlatos = lstPlatos;
 	}
+
+	//Nuevo
+	public void agregar(Festival festival) throws Exception {
+
+		if (festival == null) {
+			throw new Exception("El festival no puede ser null");
+		}
+
+		if (festivales.contains(festival)) {
+			throw new Exception("El festival ya está asociado a la unidad");
+		}
+
+		festivales.add(festival);
+	}
+	
 	
 	@Override
 	public String toString() {

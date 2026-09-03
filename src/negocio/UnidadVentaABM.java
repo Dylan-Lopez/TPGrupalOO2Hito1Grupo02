@@ -7,6 +7,7 @@ import datos.FoodTruck;
 import datos.Personal;
 import datos.PuestoDesarmable;
 import datos.UnidadVenta;
+import datos.Pedido;
 
 public class UnidadVentaABM {
 
@@ -36,15 +37,40 @@ public class UnidadVentaABM {
 	}
 
 	public void eliminar(int idUnidadVenta) throws Exception {
+
 		UnidadVenta u = dao.traer(idUnidadVenta);
+
 		if (u == null) {
-			throw new Exception("ERROR no existe Unidad de Venta con ID: " + idUnidadVenta);
+			throw new Exception(
+				"ERROR no existe Unidad de Venta con ID: " + idUnidadVenta
+			);
 		}
+
+		PedidoABM pedidoABM = new PedidoABM();
+
+		List<Pedido> pedidos =
+				pedidoABM.traerPedidosPorUnidad(idUnidadVenta);
+
+		//nuevo
+		if (pedidos != null && !pedidos.isEmpty()) {
+			throw new Exception(
+				"No se puede eliminar la unidad porque tiene pedidos asociados"
+			);
+		}
+
 		dao.eliminar(u);
 	}
 
-	public UnidadVenta traer(int idUnidadVenta) {
-		return dao.traer(idUnidadVenta);
+	//Nuevo
+	public UnidadVenta traer(int idUnidad) throws Exception {
+
+		UnidadVenta unidad = dao.traer(idUnidad);
+
+		if (unidad == null) {
+			throw new Exception("No existe una Unidad de Venta con id: " + idUnidad);
+		}
+
+		return unidad;
 	}
 
 	public List<UnidadVenta> traer() {
@@ -66,5 +92,13 @@ public class UnidadVentaABM {
 	//Nuevo
 	public UnidadVenta traerUnidadYStaff(int idUnidadVenta) {
 		return dao.traerUnidadYStaff(idUnidadVenta);
+	}
+
+	public UnidadVenta traerUnidadYFestivales(int idUnidadVenta) throws Exception {
+		UnidadVenta unidad = dao.traerUnidadYFestivales(idUnidadVenta);
+		if (unidad == null) {
+			throw new Exception("No existe una Unidad de Venta con id: " + idUnidadVenta);
+		}
+		return unidad;
 	}
 }
