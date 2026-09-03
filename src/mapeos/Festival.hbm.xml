@@ -16,13 +16,10 @@
         
         <many-to-one name="costo" class="datos.Costo" column="idCosto" not-null="true" lazy="false"/>
         
-        
-        <!--
-        <set name="listaUnidadesVenta" table="unidadventa" order-by="idUnidadVenta asc" inverse="true" lazy="true" fetch="select">
-            <key column="idFestival" not-null="true" />
-            <one-to-many class="datos.UnidadVenta" />
-        </set>
-        -->
+		<set name="unidadesVenta" table="festivalxunidad" outer-join="true">
+    		<key column="idFestival" />
+    		<many-to-many column="id_unidad_venta" class="datos.UnidadVenta" />
+		</set>
         
         
         
