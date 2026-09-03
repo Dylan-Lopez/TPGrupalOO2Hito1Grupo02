@@ -1,5 +1,3 @@
-/*
-
 package dao;
 
 import java.util.List;
@@ -77,7 +75,6 @@ public class PedidoDao {
 		}
 	}
 
-	//TRAE EL PEDIDO POR ID.
 	public Pedido traer(long idPedido) {
 		Pedido objeto = null;
 
@@ -92,7 +89,6 @@ public class PedidoDao {
 		return objeto;
 	}
 
-	//TRAE EL PEDIDO Y LA LISTA DE DETALLES (POR ID).
 	public Pedido traerPedidoYDetalles(long idPedido) throws HibernateException {
 
 		Pedido objeto = null;
@@ -119,7 +115,6 @@ public class PedidoDao {
 		return objeto;
 	}
 
-	//TRAE LISTA DE PEDIDOS.
 	public List<Pedido> traer() throws HibernateException {
 		List<Pedido> lista = null;
 
@@ -137,7 +132,6 @@ public class PedidoDao {
 		return lista;
 	}
 	
-	//TRAE LISTA DE PEDIDOS PERTENECIENTES A UNA UNIDAD EN PARTICULAR (POR ID).
 	public List<Pedido> traerPedidosPorUnidad(
 	        long idUnidad) throws HibernateException {
 
@@ -160,7 +154,6 @@ public class PedidoDao {
 	    return lista;
 	}
 	
-	//TRAE LA LISTA DE PEDIDOS PERTENECIENTES A UNA UNIDAD EN FECHAS PARTICULARES.
 	public List<Pedido> traerPedidosPorUnidadEntreFechas(
 	        long idUnidad,
 	        LocalDate fechaDesde,
@@ -189,4 +182,3 @@ public class PedidoDao {
 	    return lista;
 	}
 }
-*/

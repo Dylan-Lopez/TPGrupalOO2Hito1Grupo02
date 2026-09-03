@@ -1,8 +1,7 @@
-/*
-//Caso de Uso - Uno a Muchos - Ulises Matias Izquierdo
-
-//Traer todos los pedidos de una UnidadVenta entre fechas determinadas.
 package test.PedidoTests;
+
+// Caso de Uso - Uno a Muchos
+// Traer todos los pedidos de una UnidadVenta entre fechas determinadas.
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,11 +19,8 @@ public class TestTraerPedidosUnidadEntreFechas {
 
             long idUnidad = 1L;
 
-            LocalDate fechaDesde =
-                    LocalDate.of(2026, 8, 1);
-
-            LocalDate fechaHasta =
-                    LocalDate.of(2026, 8, 31);
+            LocalDate fechaDesde = LocalDate.of(2026, 8, 1);
+            LocalDate fechaHasta = LocalDate.of(2026, 8, 31);
 
             List<Pedido> pedidos =
                     abm.traerPedidosPorUnidadEntreFechas(
@@ -32,16 +28,14 @@ public class TestTraerPedidosUnidadEntreFechas {
                             fechaDesde,
                             fechaHasta);
 
-            System.out.println(
-                    "Pedidos encontrados:\n");
+            System.out.println("Pedidos encontrados:\n");
 
             for (Pedido pedido : pedidos) {
                 System.out.println(pedido);
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
-*/

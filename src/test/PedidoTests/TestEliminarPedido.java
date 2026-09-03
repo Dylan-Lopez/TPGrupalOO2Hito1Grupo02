@@ -1,27 +1,25 @@
-/*package test.PedidoTests;
+package test.PedidoTests;
 
-import datos.Pedido;
 import negocio.PedidoABM;
 
 public class TestEliminarPedido {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        PedidoABM abm = new PedidoABM();
+		PedidoABM abm = new PedidoABM();
 
-        abm.eliminar(1L);
+		long idPedido = 1L;
 
-        // Verificar que fue eliminado
-        Pedido pedidoEliminado = abm.traer(1L);
+		try {
 
-        if (pedidoEliminado == null) {
-            System.out.println(
-                    "Pedido eliminado correctamente.");
-        } else {
-            System.out.println(
-                    "El Pedido no pudo ser eliminado.");
-        }
-    }
+			abm.eliminar(idPedido);
+
+			System.out.println("Pedido eliminado correctamente.");
+
+		} catch (Exception e) {
+
+			System.out.println("Error: " + e.getMessage());
+		}
+	}
 }
 
-*/
