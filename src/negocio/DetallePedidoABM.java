@@ -73,7 +73,7 @@ public class DetallePedidoABM {
 		return detalles;
 	}
 	
-	public List<DetallePedido> traerPorPlato(long idPlato) throws Exception {
+	public List<DetallePedido> traerPorPlato(int idPlato) throws Exception {
 
 		List<DetallePedido> detalles = dao.traerPorPlato(idPlato);
 
