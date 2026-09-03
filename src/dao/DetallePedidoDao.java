@@ -84,7 +84,7 @@ public class DetallePedidoDao {
 		return lista;
 	}
 	
-	public List<DetallePedido> traerPorPlato(long idPlato) throws HibernateException {
+	public List<DetallePedido> traerPorPlato(int idPlato) throws HibernateException {
 
 		List<DetallePedido> lista = null;
 
