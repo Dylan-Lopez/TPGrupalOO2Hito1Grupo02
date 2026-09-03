@@ -80,7 +80,7 @@ public class UnidadVentaDao {
 		}
 	}
 
-	public UnidadVenta traer(long idUnidadVenta) {
+	public UnidadVenta traer(int idUnidadVenta) {
 		UnidadVenta objeto = null;
 		try {
 			iniciaOperacion();
