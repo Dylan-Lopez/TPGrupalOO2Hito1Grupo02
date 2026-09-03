@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="datos.Festival" table="festival">
+    	<!-- ID -->
+        <id name="idFestival" column="idFestival">
+            <generator class="identity"/>
+        </id>
+		<!-- Atributos - Columnas -->
+        <property name="nombre" column="nombre" type="string"/>
+        <property name="temporada" column="temporada" type="string"/>
+        <property name="fechaInicio" column="fechaInicio" type="LocalDate"/>
+        <property name="fechaFin" column="fechaFin" type="LocalDate"/>
+        
+        <many-to-one name="costo" class="datos.Costo" column="idCosto" not-null="true" lazy="false"/>
+        
+		<set name="unidadesVenta" table="festivalxunidad" outer-join="true">
+    		<key column="idFestival" />
+    		<many-to-many column="id_unidad_venta" class="datos.UnidadVenta" />
+		</set>
+        
+        
+        
+    </class>
+</hibernate-mapping>
