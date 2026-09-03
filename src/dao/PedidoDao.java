@@ -133,7 +133,7 @@ public class PedidoDao {
 	}
 	
 	public List<Pedido> traerPedidosPorUnidad(
-	        long idUnidad) throws HibernateException {
+	        int idUnidad) throws HibernateException {
 
 	    List<Pedido> lista = null;
 
@@ -155,7 +155,7 @@ public class PedidoDao {
 	}
 	
 	public List<Pedido> traerPedidosPorUnidadEntreFechas(
-	        long idUnidad,
+	        int idUnidad,
 	        LocalDate fechaDesde,
 	        LocalDate fechaHasta) throws HibernateException {
 
