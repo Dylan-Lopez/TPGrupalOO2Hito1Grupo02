@@ -142,7 +142,7 @@ public class PedidoDao {
 
 	        lista = session.createQuery(
 	            "from Pedido p " +
-	            "where p.unidadVenta.idUnidad = :idUnidad ",
+	            "where p.unidadVenta.idUnidadVenta = :idUnidad ",
 	            Pedido.class)
 	            .setParameter("idUnidad", idUnidad)
 	            .getResultList();
