@@ -89,7 +89,7 @@ public class PedidoABM {
 
 	}
 
-	public List<Pedido> traerPedidosPorUnidad(long idUnidad) throws Exception {
+	public List<Pedido> traerPedidosPorUnidad(int idUnidad) throws Exception {
 
 		List<Pedido> pedidos = dao.traerPedidosPorUnidad(idUnidad);
 
@@ -100,7 +100,7 @@ public class PedidoABM {
 		return pedidos;
 	}
 
-	public List<Pedido> traerPedidosPorUnidadEntreFechas(long idUnidad, LocalDate fechaDesde, LocalDate fechaHasta)
+	public List<Pedido> traerPedidosPorUnidadEntreFechas(int idUnidad, LocalDate fechaDesde, LocalDate fechaHasta)
 			throws Exception {
 
 		if (fechaDesde == null || fechaHasta == null) {
