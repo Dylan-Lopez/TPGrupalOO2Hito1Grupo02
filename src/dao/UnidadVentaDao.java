@@ -267,4 +267,23 @@ public class UnidadVentaDao {
 	    return lista;
 	}
 
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo) {
+	    List<PuestoDesarmable> lista = new ArrayList<PuestoDesarmable>();
+	    try {
+	        iniciaOperacion();
+	        Query<PuestoDesarmable> query = session.createQuery(
+	                "from PuestoDesarmable p " +
+	                "where p.cantidadCarpas > :cantidadMinima and p.tiempoMontaje < :tiempoMaximo " +
+	                "order by p.cantidadCarpas asc",
+	                PuestoDesarmable.class);
+	        query.setParameter("cantidadMinima", cantidadMinima);
+	        query.setParameter("tiempoMaximo", tiempoMaximo);
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
 }
