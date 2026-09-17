@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -46,5 +48,22 @@ public class PlatoDao {
         }
         return objeto;
     }
+    
+    public List<Plato> traerPorPrecioMayorA(float precio) throws HibernateException {
+        List<Plato> lista = null;
+        try {
+            iniciarOperacion();
+            lista = session.createQuery(
+                    "from Plato p where p.precio > :precio order by p.precio asc",
+                    Plato.class)
+                    .setParameter("precio", precio)
+                    .getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    
 	
 }

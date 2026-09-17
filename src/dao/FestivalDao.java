@@ -1,5 +1,8 @@
 package dao;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -45,5 +48,41 @@ public class FestivalDao {
         }
         return objeto;
     }
+    
+    public List<Festival> traerEntreFechas(LocalDate fechaDesde, LocalDate fechaHasta) throws HibernateException {
+        List<Festival> lista = null;
+        try {
+            iniciarOperacion();
+            lista = session.createQuery(
+                    "from Festival f " +
+                    "where f.fechaInicio between :fechaDesde and :fechaHasta " +
+                    "order by f.fechaInicio asc",
+                    Festival.class)
+                    .setParameter("fechaDesde", fechaDesde)
+                    .setParameter("fechaHasta", fechaHasta)
+                    .getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+
+    public List<Festival> traerConPlusElectricidad() throws HibernateException {
+        List<Festival> lista = null;
+        try {
+            iniciarOperacion();
+            lista = session.createQuery(
+                    "from Festival f " +
+                    "where f.costo.plusElectricidad > 0 " +
+                    "order by f.nombre asc",
+                    Festival.class)
+                    .getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    
 	
 }

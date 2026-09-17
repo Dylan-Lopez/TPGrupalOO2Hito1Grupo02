@@ -1,6 +1,8 @@
 package negocio;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import dao.FestivalDao;
 import datos.Costo;
 import datos.Festival;
@@ -16,6 +18,14 @@ public class FestivalABM {
 
     public Festival traer(int idFestival) {
         return dao.traer(idFestival);
+    }
+    
+    public List<Festival> traerEntreFechas(LocalDate fechaDesde, LocalDate fechaHasta) {
+        return dao.traerEntreFechas(fechaDesde, fechaHasta);
+    }
+
+    public List<Festival> traerConPlusElectricidad() {
+        return dao.traerConPlusElectricidad();
     }
 
 }
