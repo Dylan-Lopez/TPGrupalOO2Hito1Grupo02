@@ -8,12 +8,11 @@ import negocio.UnidadVentaABM;
 public class TestAgregarStaff {
 
 	public static void main(String[] args) {
-
+		
 		UnidadVentaABM unidadABM = new UnidadVentaABM();
 		PersonalABM personalABM = new PersonalABM();
-
+		
 		try {
-
 			UnidadVenta unidad =
 					unidadABM.traerUnidadYStaff(1);
 
@@ -32,9 +31,7 @@ public class TestAgregarStaff {
 
 			unidadABM.modificar(unidad);
 
-			System.out.println(
-					"Personal agregado al staff correctamente."
-			);
+			System.out.println("Personal agregado al staff correctamente.");
 
 			for (Personal integrante : unidad.getLstStaff()) {
 				System.out.println(integrante);
