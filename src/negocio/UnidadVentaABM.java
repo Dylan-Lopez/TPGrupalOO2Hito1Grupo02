@@ -51,7 +51,6 @@ public class UnidadVentaABM {
 		List<Pedido> pedidos =
 				pedidoABM.traerPedidosPorUnidad(idUnidadVenta);
 
-		//nuevo
 		if (pedidos != null && !pedidos.isEmpty()) {
 			throw new Exception(
 				"No se puede eliminar la unidad porque tiene pedidos asociados"
@@ -61,7 +60,6 @@ public class UnidadVentaABM {
 		dao.eliminar(u);
 	}
 
-	//Nuevo
 	public UnidadVenta traer(int idUnidad) throws Exception {
 
 		UnidadVenta unidad = dao.traer(idUnidad);
@@ -89,7 +87,6 @@ public class UnidadVentaABM {
 		return dao.traerPorCodigo(codigo);
 	}
 
-	//Nuevo
 	public UnidadVenta traerUnidadYStaff(int idUnidadVenta) {
 		return dao.traerUnidadYStaff(idUnidadVenta);
 	}
@@ -108,5 +105,13 @@ public class UnidadVentaABM {
 	
 	public List<FoodTruck> traerFoodTrucksConConexion() {
 	    return dao.traerFoodTrucksConConexion();
+	}
+	
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima) {
+	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima);
+	}
+	
+	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima) {
+	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima);
 	}
 }
