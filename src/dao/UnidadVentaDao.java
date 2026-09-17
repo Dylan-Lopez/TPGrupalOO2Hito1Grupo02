@@ -212,5 +212,23 @@ public class UnidadVentaDao {
 	    }
 	    return lista;
 	}
+	
+	public List<FoodTruck> traerFoodTrucksConConexion() {
+	    List<FoodTruck> lista = new ArrayList<FoodTruck>();
+	    try {
+	        iniciaOperacion();
+	        Query<FoodTruck> query = session.createQuery(
+	                "from FoodTruck f " +
+	                "where f.conexionElectrica = true " +
+	                "order by f.nombreComercial asc",
+	                FoodTruck.class);
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
 
 }

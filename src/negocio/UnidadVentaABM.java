@@ -105,4 +105,8 @@ public class UnidadVentaABM {
 	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima) {
 	    return dao.traerPorSuperficieMayorA(superficieMinima);
 	}
+	
+	public List<FoodTruck> traerFoodTrucksConConexion() {
+	    return dao.traerFoodTrucksConConexion();
+	}
 }
