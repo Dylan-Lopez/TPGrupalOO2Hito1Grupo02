@@ -17,8 +17,8 @@ public class TestTraerFoodTrucksConConexion {
 		if (lista.isEmpty()) {
 			System.out.println("No hay FoodTrucks con conexion electrica.");
 		} else {
-			for (FoodTruck f : lista) {
-				System.out.println("\n--- FoodTrucks con conexion electrica ---");
+			System.out.println("\n--- FoodTrucks con conexion electrica ---");
+			for (FoodTruck f : lista) {			
 				System.out.println(f);
 			}
 		}

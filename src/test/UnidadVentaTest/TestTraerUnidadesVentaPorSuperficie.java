@@ -4,7 +4,7 @@ import java.util.List;
 import datos.UnidadVenta;
 import negocio.UnidadVentaABM;
 
-public class TestTraerPorSuperficie {
+public class TestTraerUnidadesVentaPorSuperficie {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -18,8 +18,8 @@ public class TestTraerPorSuperficie {
 		if (lista.isEmpty()) {
 			System.out.println("No hay unidades que superen esa superficie.");
 		} else {
+			System.out.println("\n--- Unidades de Venta con superficie mayor a " + superficieMinima + " ---");
 			for (UnidadVenta u : lista) {
-				System.out.println("\n--- Unidades de Venta con superficie mayor a " + superficieMinima + " ---");
 				System.out.println(u);
 			}
 		}
