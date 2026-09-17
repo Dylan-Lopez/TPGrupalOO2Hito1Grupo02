@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.List;
+
 import dao.PlatoDao;
 import datos.Plato;
 
@@ -14,6 +16,10 @@ public class PlatoABM {
 
     public Plato traer(int idPlato) {
         return dao.traer(idPlato);
+    }
+    
+    public List<Plato> traerPorPrecioMayorA(float precio) {
+        return dao.traerPorPrecioMayorA(precio);
     }
 
 }
