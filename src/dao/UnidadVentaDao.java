@@ -193,5 +193,24 @@ public class UnidadVentaDao {
 		}
 		return objeto;
 	}
+	
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima) {
+	    List<UnidadVenta> lista = new ArrayList<UnidadVenta>();
+	    try {
+	        iniciaOperacion();
+	        Query<UnidadVenta> query = session.createQuery(
+	                "from UnidadVenta " +
+	        		"u where u.superficie >= :superficieMinima " +
+	                " order by u.superficie asc",
+	                UnidadVenta.class);
+	        query.setParameter("superficieMinima", superficieMinima);
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
 
 }
