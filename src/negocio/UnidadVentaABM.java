@@ -101,4 +101,8 @@ public class UnidadVentaABM {
 		}
 		return unidad;
 	}
+	
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima) {
+	    return dao.traerPorSuperficieMayorA(superficieMinima);
+	}
 }
