@@ -114,4 +114,8 @@ public class UnidadVentaABM {
 	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima) {
 	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima);
 	}
+	
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo) {
+	    return dao.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo);
+	}
 }
