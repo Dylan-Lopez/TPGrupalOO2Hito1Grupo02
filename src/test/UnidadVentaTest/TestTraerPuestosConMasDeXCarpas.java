@@ -19,8 +19,8 @@ public class TestTraerPuestosConMasDeXCarpas {
 		if (lista.isEmpty()) {
 			System.out.println("No hay puestos con mas de " + cantidadMinima + " carpas.");
 		} else {
+			System.out.println("\n--- Puestos Desarmables con mas de " + cantidadMinima + " carpas ---");
 			for (PuestoDesarmable p : lista) {
-				System.out.println("--- Puestos Desarmables con mas de " + cantidadMinima + " carpas ---");
 				System.out.println(p);
 			}
 		}

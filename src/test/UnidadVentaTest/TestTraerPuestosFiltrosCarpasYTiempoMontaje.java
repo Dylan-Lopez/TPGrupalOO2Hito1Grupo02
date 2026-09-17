@@ -20,8 +20,8 @@ public class TestTraerPuestosFiltrosCarpasYTiempoMontaje {
 		if (lista.isEmpty()) {
 			System.out.println("No hay puestos que cumplan ambas condiciones.");
 		} else {
+			System.out.println("\n--- Puestos con mas de " + cantidadMinima + " carpas Y montaje menor a " + tiempoMaximo + " ---");
 			for (PuestoDesarmable p : lista) {
-				System.out.println("\n--- Puestos con mas de " + cantidadMinima + " carpas Y montaje menor a " + tiempoMaximo + " ---");
 				System.out.println(p);
 			}
 		}

@@ -9,8 +9,8 @@ public class TestTraerUnidadVenta {
 		// TODO Auto-generated method stub
 		UnidadVentaABM abm = new UnidadVentaABM();
 		
+		System.out.println("\n--- Todas las Unidades de Venta ---");
 		for (UnidadVenta u : abm.traer()) {
-			System.out.println("\n--- Todas las Unidades de Venta ---");
 			System.out.println(u);
 		}
 	}

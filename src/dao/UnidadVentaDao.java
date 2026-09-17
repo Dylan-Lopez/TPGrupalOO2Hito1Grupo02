@@ -255,7 +255,9 @@ public class UnidadVentaDao {
 	    try {
 	        iniciaOperacion();
 	        Query<PuestoDesarmable> query = session.createQuery(
-	                "from PuestoDesarmable p where p.cantidadCarpas > :cantidadMinima order by p.cantidadCarpas asc",
+	                "from PuestoDesarmable p " +
+	                "where p.cantidadCarpas > :cantidadMinima " + 
+	                "order by p.cantidadCarpas asc",
 	                PuestoDesarmable.class);
 	        query.setParameter("cantidadMinima", cantidadMinima);
 	        lista = query.getResultList();

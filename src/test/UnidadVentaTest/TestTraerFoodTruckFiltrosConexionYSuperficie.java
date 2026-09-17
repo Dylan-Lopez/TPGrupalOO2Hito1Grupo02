@@ -19,8 +19,8 @@ public class TestTraerFoodTruckFiltrosConexionYSuperficie {
 		if (lista.isEmpty()) {
 			System.out.println("No hay FoodTrucks que cumplan ambas condiciones.");
 		} else {
+			System.out.println("\n--- FoodTrucks con superficie mayor a " + superficieMinima + " Y con conexion electrica ---");
 			for (FoodTruck f : lista) {
-				System.out.println("\n--- FoodTrucks con superficie mayor a " + superficieMinima + " Y con conexion electrica ---");
 				System.out.println(f);
 			}
 		}
