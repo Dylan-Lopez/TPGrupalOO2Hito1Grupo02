@@ -230,5 +230,41 @@ public class UnidadVentaDao {
 	    }
 	    return lista;
 	}
+	
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima) {
+	    List<FoodTruck> lista = new ArrayList<FoodTruck>();
+	    try {
+	        iniciaOperacion();
+	        Query<FoodTruck> query = session.createQuery(
+	                "from FoodTruck f " +
+	                "where f.superficie > :superficieMinima and f.conexionElectrica = true " +
+	                "order by f.superficie asc",
+	                FoodTruck.class);
+	        query.setParameter("superficieMinima", superficieMinima);
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
+	
+	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima) {
+	    List<PuestoDesarmable> lista = new ArrayList<PuestoDesarmable>();
+	    try {
+	        iniciaOperacion();
+	        Query<PuestoDesarmable> query = session.createQuery(
+	                "from PuestoDesarmable p where p.cantidadCarpas > :cantidadMinima order by p.cantidadCarpas asc",
+	                PuestoDesarmable.class);
+	        query.setParameter("cantidadMinima", cantidadMinima);
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
 
 }

@@ -4,6 +4,7 @@ public class PuestoDesarmable extends UnidadVenta{
 	
 	private int cantidadCarpas;
 	private float tiempoMontaje;
+	//tiempo en minutos
 	
 	public PuestoDesarmable() {
 		//vacio
@@ -28,7 +29,7 @@ public class PuestoDesarmable extends UnidadVenta{
 	public float getTiempoMontaje() {
 		return tiempoMontaje;
 	}
-	public void setTiempoMontaje(int tiempoMontaje) {
+	public void setTiempoMontaje(float tiempoMontaje) {
 		this.tiempoMontaje = tiempoMontaje;
 	}
 

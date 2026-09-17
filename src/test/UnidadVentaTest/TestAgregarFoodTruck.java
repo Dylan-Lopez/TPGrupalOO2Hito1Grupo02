@@ -2,7 +2,7 @@ package test.UnidadVentaTest;
 
 import negocio.UnidadVentaABM;
 
-public class TestAgregarUnidadVenta {
+public class TestAgregarFoodTruck {
 	public static void main(String[] args) {
 		UnidadVentaABM abm = new UnidadVentaABM();
 		try {
