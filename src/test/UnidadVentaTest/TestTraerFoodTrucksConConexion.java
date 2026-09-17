@@ -11,7 +11,7 @@ public class TestTraerFoodTrucksConConexion {
 		// TODO Auto-generated method stub
 		UnidadVentaABM abm = new UnidadVentaABM();
 
-		//Trae solo los FoodTruck con conexion electrica
+		//Trae solo los FoodTruck con conexion electrica 
 		List<FoodTruck> lista = abm.traerFoodTrucksConConexion();
 
 		if (lista.isEmpty()) {
