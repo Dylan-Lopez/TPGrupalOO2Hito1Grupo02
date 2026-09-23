@@ -54,6 +54,11 @@
 		<one-to-many class="datos.Personal"/>
 	</set>
 	
+	<set name="lstPlatos" table="unidadventaxplato" inverse="false" outer-join="true">
+    	<key column="id_unidad_venta" />
+    	<many-to-many column="idPlato" class="datos.Plato" />
+	</set>
+	
 	<joined-subclass name="datos.FoodTruck" 
 		table="food_truck">
 		<key column="id_food_truck"/>

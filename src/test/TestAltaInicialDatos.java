@@ -1,6 +1,7 @@
 package test;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 import datos.Costo;
 import datos.Personal;
@@ -34,12 +35,12 @@ public class TestAltaInicialDatos {
 		try {
 
 			// -----------------------------------------
-			// 1) COSTOS (los necesita Festival)
+			// 1) COSTOS (uno por festival, para diferenciar costoTotal)
 			// -----------------------------------------
-			int idCosto1 = costoABM.agregar(2200.00f, 950.50f, 0f); // plusElectricidad = 20 (> 0)
-			int idCosto2 = costoABM.agregar(80f, 40f, 0f);   // plusElectricidad = 0
-			System.out.println("Costos creados: " + idCosto1 + ", " + idCosto2);
-
+			int idCosto1 = costoABM.agregar(2200.00f, 950.50f, 20f); // Navidad, con plusElectricidad
+			int idCosto2 = costoABM.agregar(80f, 40f, 0f);           // Otoño, sin plusElectricidad
+			int idCosto3 = costoABM.agregar(1500f, 600f, 15f);       // Primavera, con plusElectricidad
+			System.out.println("Costos creados: " + idCosto1 + ", " + idCosto2 + ", " + idCosto3);
 			// -----------------------------------------
 			// 2) PERSONAL (responsables y staff de las unidades)
 			//    fechaNacimiento >= 18 años | fechaIngreso variada
@@ -66,8 +67,18 @@ public class TestAltaInicialDatos {
 			int idPlato1 = platoABM.agregar("Milanesa con papas", 8500.00f, 3200.00f);
 			int idPlato2 = platoABM.agregar("Pancho", 3000f, 1000f);
 			int idPlato3 = platoABM.agregar("Choripan", 4000f, 1500f);
-			System.out.println("Platos creados: " + idPlato1 + ", " + idPlato2 + ", " + idPlato3);
+			int idPlato4 = platoABM.agregar("Empanada", 1200f, 400f);
+			int idPlato5 = platoABM.agregar("Pizza", 9500f, 4000f);
+			int idPlato6 = platoABM.agregar("Hamburguesa", 6000f, 2200f);
+			System.out.println("Platos creados: " + idPlato1 + ", " + idPlato2 + ", " + idPlato3 + ", "
+					+ idPlato4 + ", " + idPlato5 + ", " + idPlato6);
 
+			Plato plato1 = platoABM.traer(idPlato1);
+			Plato plato2 = platoABM.traer(idPlato2);
+			Plato plato3 = platoABM.traer(idPlato3);
+			Plato plato4 = platoABM.traer(idPlato4);
+			Plato plato5 = platoABM.traer(idPlato5);
+			Plato plato6 = platoABM.traer(idPlato6);
 			// -----------------------------------------
 			// 4) UNIDADES DE VENTA (FoodTruck y PuestoDesarmable)
 			// -----------------------------------------
@@ -86,12 +97,14 @@ public class TestAltaInicialDatos {
 			// -----------------------------------------
 			Costo costo1 = costoABM.traer(idCosto1);
 			Costo costo2 = costoABM.traer(idCosto2);
+			Costo costo3 = costoABM.traer(idCosto3);
 			int idFest1 = festivalABM.agregar("Festival de Navidad", "Verano",
-	                LocalDate.of(2026, 12, 22), LocalDate.of(2026, 12, 25), costo1);
+					LocalDate.of(2026, 12, 22), LocalDate.of(2026, 12, 25), costo1);
 			int idFest2 = festivalABM.agregar("Festival Otoño", "Otoño",
 					LocalDate.of(2026, 4, 5), LocalDate.of(2026, 4, 15), costo2);
-			System.out.println("Festivales creados: " + idFest1 + ", " + idFest2);
-
+			int idFest3 = festivalABM.agregar("Festival Primavera", "Primavera",
+					LocalDate.of(2026, 9, 21), LocalDate.of(2026, 9, 30), costo3);
+			System.out.println("Festivales creados: " + idFest1 + ", " + idFest2 + ", " + idFest3);
 			// -----------------------------------------
 			// 6) Relacion FESTIVAL <-> UNIDAD
 			// -----------------------------------------
@@ -100,7 +113,42 @@ public class TestAltaInicialDatos {
 			unidadConFest.agregar(festival1);
 			unidadABM.modificar(unidadConFest);
 			System.out.println("Festival " + idFest1 + " asociado a la unidad " + idFt1);
+			
+			// -----------------------------------------
+			// 6b) Relacion UNIDAD DE VENTA <-> PLATO
+			//(usamos el traer() simple + set nuevo, ya que no
+			//tocamos el DAO/ABM de UnidadVenta de mi compañero)
+			// -----------------------------------------
+			
+			UnidadVenta uFt1Platos = unidadABM.traer(idFt1);
+			uFt1Platos.setLstPlatos(new HashSet<>());
+			uFt1Platos.getLstPlatos().add(plato1);
+			uFt1Platos.getLstPlatos().add(plato2);
+			uFt1Platos.getLstPlatos().add(plato3);
+			unidadABM.modificar(uFt1Platos);
 
+			UnidadVenta uFt2Platos = unidadABM.traer(idFt2);
+			uFt2Platos.setLstPlatos(new HashSet<>());
+			uFt2Platos.getLstPlatos().add(plato4);
+			uFt2Platos.getLstPlatos().add(plato5);
+			unidadABM.modificar(uFt2Platos);
+
+			UnidadVenta uPd1Platos = unidadABM.traer(idPd1);
+			uPd1Platos.setLstPlatos(new HashSet<>());
+			uPd1Platos.getLstPlatos().add(plato3);
+			uPd1Platos.getLstPlatos().add(plato6);
+			uPd1Platos.getLstPlatos().add(plato5);
+			unidadABM.modificar(uPd1Platos);
+
+			UnidadVenta uPd2Platos = unidadABM.traer(idPd2);
+			uPd2Platos.setLstPlatos(new HashSet<>());
+			uPd2Platos.getLstPlatos().add(plato4);
+			uPd2Platos.getLstPlatos().add(plato6);
+			unidadABM.modificar(uPd2Platos);
+
+			System.out.println("Relaciones UnidadVenta<->Plato cargadas.");
+			
+			
 			// -----------------------------------------
 			// 7) Relacion STAFF
 			// -----------------------------------------
@@ -120,13 +168,13 @@ public class TestAltaInicialDatos {
 			// -----------------------------------------
 			// 9) DETALLES DE PEDIDO (necesitan Plato Y Pedido)
 			// -----------------------------------------
-			Plato plato1 = platoABM.traer(idPlato1);
-			Plato plato2 = platoABM.traer(idPlato2);
+			Plato plato7 = platoABM.traer(idPlato1);
+			Plato plato8 = platoABM.traer(idPlato2);
 			Pedido pedido1 = pedidoABM.traer(idPedido1);
 			Pedido pedido2 = pedidoABM.traer(idPedido2);
 
-			detalleABM.agregar(plato1, 2, pedido1);
-			detalleABM.agregar(plato2, 3, pedido1);
+			detalleABM.agregar(plato7, 2, pedido1);
+			detalleABM.agregar(plato8, 3, pedido1);
 			detalleABM.agregar(plato1, 1, pedido2);
 			System.out.println("Detalles de pedido creados.");
 
