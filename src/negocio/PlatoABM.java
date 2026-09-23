@@ -21,5 +21,13 @@ public class PlatoABM {
     public List<Plato> traerPorPrecioMayorA(float precio) {
         return dao.traerPorPrecioMayorA(precio);
     }
+    
+    public List<Plato> traerPlatosPorFestival(int idFestival) {
+        return dao.traerPlatosPorFestival(idFestival);
+    }
+    
+    public Plato traerPlatoMasCaroDeFestvial(int idFestival) {
+        return dao.traerPlatoMasCaroDeFestival(idFestival);
+    }
 
 }

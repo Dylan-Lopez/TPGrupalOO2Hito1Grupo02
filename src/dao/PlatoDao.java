@@ -64,6 +64,45 @@ public class PlatoDao {
         return lista;
     }
     
+    public List<Plato> traerPlatosPorFestival(int idFestival) throws HibernateException {
+        List<Plato> lista = null;
+        try {
+            iniciarOperacion();
+            String hql = "select distinct p from Festival f " +
+                    "join f.unidadesVenta uv " +
+                    "join uv.lstPlatos p " +
+                    "where f.idFestival = :idFestival " +
+                    "order by p.nombre asc";
+            lista = session.createQuery(hql, Plato.class)
+                    .setParameter("idFestival", idFestival)
+                    .getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    public Plato traerPlatoMasCaroDeFestival(int idFestival) throws HibernateException {
+        Plato masCaro = null;
+        try {
+            iniciarOperacion();
+            String hql = "select distinct p from Festival f " +
+                    "join f.unidadesVenta uv " +
+                    "join uv.lstPlatos p " +
+                    "where f.idFestival = :idFestival " +
+                    "order by p.precio desc";
+            List<Plato> lista = session.createQuery(hql, Plato.class)
+                    .setParameter("idFestival", idFestival)
+                    .setMaxResults(1)
+                    .getResultList();
+            if (!lista.isEmpty()) {
+                masCaro = lista.get(0);
+            }
+        } finally {
+            session.close();
+        }
+        return masCaro;
+    }
     
 	
 }

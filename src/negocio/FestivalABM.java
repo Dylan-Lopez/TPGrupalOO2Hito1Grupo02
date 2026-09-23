@@ -6,6 +6,8 @@ import java.util.List;
 import dao.FestivalDao;
 import datos.Costo;
 import datos.Festival;
+import datos.Plato;
+import datos.UnidadVenta;
 
 public class FestivalABM {
 	
@@ -27,5 +29,10 @@ public class FestivalABM {
     public List<Festival> traerConPlusElectricidad() {
         return dao.traerConPlusElectricidad();
     }
+    
+    public Festival traerFestivalYUnidades(int idFestival) {
+        return dao.traerFestivalYUnidades(idFestival);
+    }
+    
 
 }
