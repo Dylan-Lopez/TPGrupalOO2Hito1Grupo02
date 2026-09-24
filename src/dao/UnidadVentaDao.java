@@ -155,7 +155,7 @@ public class UnidadVentaDao {
 		return lista;
 	}
 
-	//Nuevo
+	
 	public UnidadVenta traerUnidadYStaff(int idUnidadVenta) throws HibernateException {
 
 		UnidadVenta objeto = null;
@@ -194,16 +194,27 @@ public class UnidadVentaDao {
 		return objeto;
 	}
 	
-	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima) {
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, int idFestival) {
 	    List<UnidadVenta> lista = new ArrayList<UnidadVenta>();
 	    try {
 	        iniciaOperacion();
-	        Query<UnidadVenta> query = session.createQuery(
-	                "from UnidadVenta " +
-	        		"u where u.superficie >= :superficieMinima " +
-	                " order by u.superficie asc",
-	                UnidadVenta.class);
+
+	        String hql = "select distinct u from UnidadVenta u ";
+	        if (idFestival != -1) {
+	            hql += "join u.festivales fest ";
+	        }
+	        hql += "where u.superficie >= :superficieMinima ";
+	        if (idFestival != -1) {
+	            hql += "and fest.idFestival = :idFestival ";
+	        }
+	        hql += "order by u.superficie asc";
+
+	        Query<UnidadVenta> query = session.createQuery(hql, UnidadVenta.class);
 	        query.setParameter("superficieMinima", superficieMinima);
+	        if (idFestival != -1) {
+	            query.setParameter("idFestival", idFestival);
+	        }
+
 	        lista = query.getResultList();
 	    } finally {
 	        if (session != null) {
@@ -213,15 +224,26 @@ public class UnidadVentaDao {
 	    return lista;
 	}
 	
-	public List<FoodTruck> traerFoodTrucksConConexion() {
+	public List<FoodTruck> traerFoodTrucksConConexion(int idFestival) {
 	    List<FoodTruck> lista = new ArrayList<FoodTruck>();
 	    try {
 	        iniciaOperacion();
-	        Query<FoodTruck> query = session.createQuery(
-	                "from FoodTruck f " +
-	                "where f.conexionElectrica = true " +
-	                "order by f.nombreComercial asc",
-	                FoodTruck.class);
+
+	        String hql = "select distinct f from FoodTruck f ";
+	        if (idFestival != -1) {
+	            hql += "join f.festivales fest ";
+	        }
+	        hql += "where f.conexionElectrica = true ";
+	        if (idFestival != -1) {
+	            hql += "and fest.idFestival = :idFestival ";
+	        }
+	        hql += "order by f.nombreComercial asc";
+
+	        Query<FoodTruck> query = session.createQuery(hql, FoodTruck.class);
+	        if (idFestival != -1) {
+	            query.setParameter("idFestival", idFestival);
+	        }
+
 	        lista = query.getResultList();
 	    } finally {
 	        if (session != null) {
@@ -231,16 +253,27 @@ public class UnidadVentaDao {
 	    return lista;
 	}
 	
-	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima) {
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, int idFestival) {
 	    List<FoodTruck> lista = new ArrayList<FoodTruck>();
 	    try {
 	        iniciaOperacion();
-	        Query<FoodTruck> query = session.createQuery(
-	                "from FoodTruck f " +
-	                "where f.superficie > :superficieMinima and f.conexionElectrica = true " +
-	                "order by f.superficie asc",
-	                FoodTruck.class);
+
+	        String hql = "select distinct f from FoodTruck f ";
+	        if (idFestival != -1) {
+	            hql += "join f.festivales fest ";
+	        }
+	        hql += "where f.superficie > :superficieMinima and f.conexionElectrica = true ";
+	        if (idFestival != -1) {
+	            hql += "and fest.idFestival = :idFestival ";
+	        }
+	        hql += "order by f.superficie asc";
+
+	        Query<FoodTruck> query = session.createQuery(hql, FoodTruck.class);
 	        query.setParameter("superficieMinima", superficieMinima);
+	        if (idFestival != -1) {
+	            query.setParameter("idFestival", idFestival);
+	        }
+
 	        lista = query.getResultList();
 	    } finally {
 	        if (session != null) {
@@ -250,16 +283,27 @@ public class UnidadVentaDao {
 	    return lista;
 	}
 	
-	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima) {
+	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, int idFestival) {
 	    List<PuestoDesarmable> lista = new ArrayList<PuestoDesarmable>();
 	    try {
 	        iniciaOperacion();
-	        Query<PuestoDesarmable> query = session.createQuery(
-	                "from PuestoDesarmable p " +
-	                "where p.cantidadCarpas > :cantidadMinima " + 
-	                "order by p.cantidadCarpas asc",
-	                PuestoDesarmable.class);
+
+	        String hql = "select distinct p from PuestoDesarmable p ";
+	        if (idFestival != -1) {
+	            hql += "join p.festivales fest ";
+	        }
+	        hql += "where p.cantidadCarpas > :cantidadMinima ";
+	        if (idFestival != -1) {
+	            hql += "and fest.idFestival = :idFestival ";
+	        }
+	        hql += "order by p.cantidadCarpas asc";
+
+	        Query<PuestoDesarmable> query = session.createQuery(hql, PuestoDesarmable.class);
 	        query.setParameter("cantidadMinima", cantidadMinima);
+	        if (idFestival != -1) {
+	            query.setParameter("idFestival", idFestival);
+	        }
+
 	        lista = query.getResultList();
 	    } finally {
 	        if (session != null) {
@@ -269,17 +313,28 @@ public class UnidadVentaDao {
 	    return lista;
 	}
 
-	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo) {
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, int idFestival) {
 	    List<PuestoDesarmable> lista = new ArrayList<PuestoDesarmable>();
 	    try {
 	        iniciaOperacion();
-	        Query<PuestoDesarmable> query = session.createQuery(
-	                "from PuestoDesarmable p " +
-	                "where p.cantidadCarpas > :cantidadMinima and p.tiempoMontaje < :tiempoMaximo " +
-	                "order by p.cantidadCarpas asc",
-	                PuestoDesarmable.class);
+
+	        String hql = "select distinct p from PuestoDesarmable p ";
+	        if (idFestival != -1) {
+	            hql += "join p.festivales fest ";
+	        }
+	        hql += "where p.cantidadCarpas > :cantidadMinima and p.tiempoMontaje < :tiempoMaximo ";
+	        if (idFestival != -1) {
+	            hql += "and fest.idFestival = :idFestival ";
+	        }
+	        hql += "order by p.cantidadCarpas asc";
+
+	        Query<PuestoDesarmable> query = session.createQuery(hql, PuestoDesarmable.class);
 	        query.setParameter("cantidadMinima", cantidadMinima);
 	        query.setParameter("tiempoMaximo", tiempoMaximo);
+	        if (idFestival != -1) {
+	            query.setParameter("idFestival", idFestival);
+	        }
+
 	        lista = query.getResultList();
 	    } finally {
 	        if (session != null) {

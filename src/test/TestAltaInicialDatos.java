@@ -107,12 +107,33 @@ public class TestAltaInicialDatos {
 			System.out.println("Festivales creados: " + idFest1 + ", " + idFest2 + ", " + idFest3);
 			// -----------------------------------------
 			// 6) Relacion FESTIVAL <-> UNIDAD
+			//    Enlazamos TODAS las unidades a algun festival
 			// -----------------------------------------
-			UnidadVenta unidadConFest = unidadABM.traerUnidadYFestivales(idFt1);
 			Festival festival1 = festivalABM.traer(idFest1);
-			unidadConFest.agregar(festival1);
-			unidadABM.modificar(unidadConFest);
-			System.out.println("Festival " + idFest1 + " asociado a la unidad " + idFt1);
+			Festival festival2 = festivalABM.traer(idFest2);
+			Festival festival3 = festivalABM.traer(idFest3);
+
+			// Food Truck Sabores (idFt1) -> Festival de Navidad (idFest1)
+			UnidadVenta unidadFt1 = unidadABM.traerUnidadYFestivales(idFt1);
+			unidadFt1.agregar(festival1);
+			unidadABM.modificar(unidadFt1);
+
+			// Mini Truck (idFt2) -> Festival Otoño (idFest2)
+			UnidadVenta unidadFt2 = unidadABM.traerUnidadYFestivales(idFt2);
+			unidadFt2.agregar(festival2);
+			unidadABM.modificar(unidadFt2);
+
+			// Puesto Pepitos (idPd1) -> Festival de Navidad (idFest1)
+			UnidadVenta unidadPd1 = unidadABM.traerUnidadYFestivales(idPd1);
+			unidadPd1.agregar(festival1);
+			unidadABM.modificar(unidadPd1);
+
+			// Carpa Carpitas (idPd2) -> Festival Primavera (idFest3)
+			UnidadVenta unidadPd2 = unidadABM.traerUnidadYFestivales(idPd2);
+			unidadPd2.agregar(festival3);
+			unidadABM.modificar(unidadPd2);
+
+			System.out.println("Todas las unidades fueron asociadas a un festival.");
 			
 			// -----------------------------------------
 			// 6b) Relacion UNIDAD DE VENTA <-> PLATO
