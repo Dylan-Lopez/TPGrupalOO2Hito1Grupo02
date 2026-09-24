@@ -79,7 +79,6 @@ public abstract class UnidadVenta {
 		this.lstPlatos = lstPlatos;
 	}
 
-	//Nuevo
 	public void agregar(Festival festival) throws Exception {
 
 		if (festival == null) {

@@ -99,23 +99,23 @@ public class UnidadVentaABM {
 		return unidad;
 	}
 	
-	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima) {
-	    return dao.traerPorSuperficieMayorA(superficieMinima);
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, int idFestival) {
+	    return dao.traerPorSuperficieMayorA(superficieMinima, idFestival);
 	}
 	
-	public List<FoodTruck> traerFoodTrucksConConexion() {
-	    return dao.traerFoodTrucksConConexion();
+	public List<FoodTruck> traerFoodTrucksConConexion(int idFestival) {
+	    return dao.traerFoodTrucksConConexion(idFestival);
 	}
 	
-	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima) {
-	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima);
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, int idFestival) {
+	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima, idFestival);
 	}
 	
-	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima) {
-	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima);
+	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, int idFestival) {
+	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima, idFestival);
 	}
 	
-	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo) {
-	    return dao.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo);
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, int idFestival) {
+	    return dao.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo, idFestival);
 	}
 }
