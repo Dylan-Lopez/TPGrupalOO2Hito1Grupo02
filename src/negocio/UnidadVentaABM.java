@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.List;
 
+import datos.Festival;
 import dao.UnidadVentaDao;
 import datos.FoodTruck;
 import datos.Personal;
@@ -99,8 +100,8 @@ public class UnidadVentaABM {
 		return unidad;
 	}
 	
-	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, int idFestival) {
-	    return dao.traerPorSuperficieMayorA(superficieMinima, idFestival);
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, Festival festival) {
+	    return dao.traerPorSuperficieMayorA(superficieMinima, festival);
 	}
 	
 	public List<FoodTruck> traerFoodTrucksConConexion(int idFestival) {

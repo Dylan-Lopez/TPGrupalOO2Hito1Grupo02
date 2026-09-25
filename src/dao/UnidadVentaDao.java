@@ -1,4 +1,5 @@
 package dao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.hibernate.Hibernate;
 import datos.UnidadVenta;
 import datos.FoodTruck;
 import datos.PuestoDesarmable;
+import datos.Festival;
 
 public class UnidadVentaDao {
 	private static Session session;
@@ -194,25 +196,25 @@ public class UnidadVentaDao {
 		return objeto;
 	}
 	
-	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, int idFestival) {
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, Festival festival) {
 	    List<UnidadVenta> lista = new ArrayList<UnidadVenta>();
 	    try {
 	        iniciaOperacion();
 
 	        String hql = "select distinct u from UnidadVenta u ";
-	        if (idFestival != -1) {
+	        if (festival != null) {
 	            hql += "join u.festivales fest ";
 	        }
 	        hql += "where u.superficie >= :superficieMinima ";
-	        if (idFestival != -1) {
-	            hql += "and fest.idFestival = :idFestival ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
 	        }
 	        hql += "order by u.superficie asc";
 
 	        Query<UnidadVenta> query = session.createQuery(hql, UnidadVenta.class);
 	        query.setParameter("superficieMinima", superficieMinima);
-	        if (idFestival != -1) {
-	            query.setParameter("idFestival", idFestival);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
 	        }
 
 	        lista = query.getResultList();

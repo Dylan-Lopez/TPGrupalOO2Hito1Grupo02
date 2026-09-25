@@ -2,28 +2,33 @@ package test.UnidadVentaTest;
 
 import java.util.List;
 import datos.UnidadVenta;
+import datos.Festival;
 import negocio.UnidadVentaABM;
+import negocio.FestivalABM;
 
 public class TestTraerUnidadesVentaPorSuperficie {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UnidadVentaABM abm = new UnidadVentaABM();
-		
-		//Superficie a utilizar se puede editar por lo que sea necesario para la consulta
-		float superficieMinima = 25;
-		
-		// Festival por el que filtrar. Dejar en -1 para traer TODAS (sin filtrar por festival)
-		int idFestival = -1;
+		FestivalABM festivalABM = new FestivalABM();
 
-		List<UnidadVenta> lista = abm.traerPorSuperficieMayorA(superficieMinima, idFestival);
+		// Superficie a utilizar se puede editar por lo que sea necesario para la consulta
+		float superficieMinima = 25;
+
+		// Festival por el que filtrar. Dejar en null para traer TODAS (sin filtrar por festival)
+		Festival festival = null;
+		// Para filtrar por un festival concreto, descomentar la siguiente linea:
+		festival = festivalABM.traer(1);
+
+		List<UnidadVenta> lista = abm.traerPorSuperficieMayorA(superficieMinima, festival);
 
 		// Texto del titulo segun si se filtro o no
 		String detalleFestival;
-		if (idFestival == -1) {
+		if (festival == null) {
 			detalleFestival = "(todos los festivales)";
 		} else {
-			detalleFestival = "(festival " + idFestival + ")";
+			detalleFestival = "(festival: " + festival.getNombre() + ")";
 		}
 
 		if (lista.isEmpty()) {
