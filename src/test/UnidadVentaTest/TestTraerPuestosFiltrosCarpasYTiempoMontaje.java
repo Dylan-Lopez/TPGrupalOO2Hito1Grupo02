@@ -3,29 +3,35 @@ package test.UnidadVentaTest;
 import java.util.List;
 
 import datos.PuestoDesarmable;
+import datos.Festival;
 import negocio.UnidadVentaABM;
+import negocio.FestivalABM;
 
 public class TestTraerPuestosFiltrosCarpasYTiempoMontaje {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UnidadVentaABM abm = new UnidadVentaABM();
+		FestivalABM festivalABM = new FestivalABM();
 
 		// Cant min carpas 3 - TiempoMax 30
 		int cantidadMinima = 3;
 		float tiempoMaximo = 30;
 
-		// Festival por el que filtrar. Dejar en -1 para traer TODOS (sin filtrar por festival)
-		int idFestival = -1;
+		// Por defecto trae TODOS (sin filtrar por festival)
+		Festival festival = null;
 
-		List<PuestoDesarmable> lista = abm.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo, idFestival);
+		// Para filtrar por un festival, descomentar y poner el id (1, 2, 3...):
+		festival = festivalABM.traer(1);
+
+		List<PuestoDesarmable> lista = abm.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo, festival);
 
 		// Texto del titulo segun si se filtro o no
 		String detalleFestival;
-		if (idFestival == -1) {
+		if (festival == null) {
 			detalleFestival = "(todos los festivales)";
 		} else {
-			detalleFestival = "(festival " + idFestival + ")";
+			detalleFestival = "(festival: " + festival.getNombre() + ")";
 		}
 
 		if (lista.isEmpty()) {
@@ -36,6 +42,7 @@ public class TestTraerPuestosFiltrosCarpasYTiempoMontaje {
 				System.out.println(p.getNombreComercial() + " -> " + p);
 			}
 		}
+
 	}
 
 }

@@ -4,25 +4,31 @@ import java.util.List;
 
 import datos.FoodTruck;
 import negocio.UnidadVentaABM;
+import datos.Festival;
+import negocio.FestivalABM;
 
 public class TestTraerFoodTrucksConConexion {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UnidadVentaABM abm = new UnidadVentaABM();
+		FestivalABM festivalABM = new FestivalABM();
 
-		// Festival por el que filtrar. Dejar en -1 para traer TODOS (sin filtrar por festival)
-		int idFestival = -1;
+		// Por defecto trae TODOS (sin filtrar por festival)
+		Festival festival = null;
+
+		// Para filtrar por un festival, descomentar y poner el id (1, 2, 3...):
+		festival = festivalABM.traer(1);
 
 		// Trae solo los FoodTruck con conexion electrica (filtrando por festival si corresponde)
-		List<FoodTruck> lista = abm.traerFoodTrucksConConexion(idFestival);
+		List<FoodTruck> lista = abm.traerFoodTrucksConConexion(festival);
 
 		// Texto del titulo segun si se filtro o no
 		String detalleFestival;
-		if (idFestival == -1) {
+		if (festival == null) {
 			detalleFestival = "(todos los festivales)";
 		} else {
-			detalleFestival = "(festival " + idFestival + ")";
+			detalleFestival = "(festival: " + festival.getNombre() + ")";
 		}
 
 		if (lista.isEmpty()) {

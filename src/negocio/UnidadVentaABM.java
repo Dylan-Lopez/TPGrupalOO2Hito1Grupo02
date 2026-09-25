@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.List;
 
+import datos.Festival;
 import dao.UnidadVentaDao;
 import datos.FoodTruck;
 import datos.Personal;
@@ -99,23 +100,23 @@ public class UnidadVentaABM {
 		return unidad;
 	}
 	
-	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, int idFestival) {
-	    return dao.traerPorSuperficieMayorA(superficieMinima, idFestival);
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, Festival festival) {
+	    return dao.traerPorSuperficieMayorA(superficieMinima, festival);
 	}
 	
-	public List<FoodTruck> traerFoodTrucksConConexion(int idFestival) {
-	    return dao.traerFoodTrucksConConexion(idFestival);
+	public List<FoodTruck> traerFoodTrucksConConexion(Festival festival) {
+	    return dao.traerFoodTrucksConConexion(festival);
 	}
 	
-	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, int idFestival) {
-	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima, idFestival);
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, Festival festival) {
+	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima, festival);
 	}
 	
-	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, int idFestival) {
-	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima, idFestival);
+	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, Festival festival) {
+	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima, festival);
 	}
 	
-	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, int idFestival) {
-	    return dao.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo, idFestival);
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, Festival festival) {
+	    return dao.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo, festival);
 	}
 }
