@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -46,5 +48,61 @@ public class PlatoDao {
         }
         return objeto;
     }
+    
+    public List<Plato> traerPorPrecioMayorA(float precio) throws HibernateException {
+        List<Plato> lista = null;
+        try {
+            iniciarOperacion();
+            lista = session.createQuery(
+                    "from Plato p where p.precio > :precio order by p.precio asc",
+                    Plato.class)
+                    .setParameter("precio", precio)
+                    .getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    public List<Plato> traerPlatosPorFestival(int idFestival) throws HibernateException {
+        List<Plato> lista = null;
+        try {
+            iniciarOperacion();
+            String hql = "select distinct p from Festival f " +
+                    "join f.unidadesVenta uv " +
+                    "join uv.lstPlatos p " +
+                    "where f.idFestival = :idFestival " +
+                    "order by p.nombre asc";
+            lista = session.createQuery(hql, Plato.class)
+                    .setParameter("idFestival", idFestival)
+                    .getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    public Plato traerPlatoMasCaroDeFestival(int idFestival) throws HibernateException {
+        Plato masCaro = null;
+        try {
+            iniciarOperacion();
+            String hql = "select distinct p from Festival f " +
+                    "join f.unidadesVenta uv " +
+                    "join uv.lstPlatos p " +
+                    "where f.idFestival = :idFestival " +
+                    "order by p.precio desc";
+            List<Plato> lista = session.createQuery(hql, Plato.class)
+                    .setParameter("idFestival", idFestival)
+                    .setMaxResults(1)
+                    .getResultList();
+            if (!lista.isEmpty()) {
+                masCaro = lista.get(0);
+            }
+        } finally {
+            session.close();
+        }
+        return masCaro;
+    }
+    
 	
 }

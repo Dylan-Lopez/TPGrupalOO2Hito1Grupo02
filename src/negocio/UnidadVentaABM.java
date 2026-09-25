@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.List;
 
+import datos.Festival;
 import dao.UnidadVentaDao;
 import datos.FoodTruck;
 import datos.Personal;
@@ -51,7 +52,6 @@ public class UnidadVentaABM {
 		List<Pedido> pedidos =
 				pedidoABM.traerPedidosPorUnidad(idUnidadVenta);
 
-		//nuevo
 		if (pedidos != null && !pedidos.isEmpty()) {
 			throw new Exception(
 				"No se puede eliminar la unidad porque tiene pedidos asociados"
@@ -61,7 +61,6 @@ public class UnidadVentaABM {
 		dao.eliminar(u);
 	}
 
-	//Nuevo
 	public UnidadVenta traer(int idUnidad) throws Exception {
 
 		UnidadVenta unidad = dao.traer(idUnidad);
@@ -89,7 +88,6 @@ public class UnidadVentaABM {
 		return dao.traerPorCodigo(codigo);
 	}
 
-	//Nuevo
 	public UnidadVenta traerUnidadYStaff(int idUnidadVenta) {
 		return dao.traerUnidadYStaff(idUnidadVenta);
 	}
@@ -100,5 +98,25 @@ public class UnidadVentaABM {
 			throw new Exception("No existe una Unidad de Venta con id: " + idUnidadVenta);
 		}
 		return unidad;
+	}
+	
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, Festival festival) {
+	    return dao.traerPorSuperficieMayorA(superficieMinima, festival);
+	}
+	
+	public List<FoodTruck> traerFoodTrucksConConexion(Festival festival) {
+	    return dao.traerFoodTrucksConConexion(festival);
+	}
+	
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, Festival festival) {
+	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima, festival);
+	}
+	
+	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, Festival festival) {
+	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima, festival);
+	}
+	
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, Festival festival) {
+	    return dao.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo, festival);
 	}
 }

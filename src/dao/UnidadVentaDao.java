@@ -1,4 +1,5 @@
 package dao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.hibernate.Hibernate;
 import datos.UnidadVenta;
 import datos.FoodTruck;
 import datos.PuestoDesarmable;
+import datos.Festival;
 
 public class UnidadVentaDao {
 	private static Session session;
@@ -155,7 +157,7 @@ public class UnidadVentaDao {
 		return lista;
 	}
 
-	//Nuevo
+	
 	public UnidadVenta traerUnidadYStaff(int idUnidadVenta) throws HibernateException {
 
 		UnidadVenta objeto = null;
@@ -193,5 +195,154 @@ public class UnidadVentaDao {
 		}
 		return objeto;
 	}
+	
+	public List<UnidadVenta> traerPorSuperficieMayorA(float superficieMinima, Festival festival) {
+	    List<UnidadVenta> lista = new ArrayList<UnidadVenta>();
+	    try {
+	        iniciaOperacion();
 
+	        String hql = "select distinct u from UnidadVenta u ";
+	        if (festival != null) {
+	            hql += "join u.festivales fest ";
+	        }
+	        hql += "where u.superficie >= :superficieMinima ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
+	        }
+	        hql += "order by u.superficie asc";
+
+	        Query<UnidadVenta> query = session.createQuery(hql, UnidadVenta.class);
+	        query.setParameter("superficieMinima", superficieMinima);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
+	        }
+
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
+	
+	public List<FoodTruck> traerFoodTrucksConConexion(Festival festival) {
+	    List<FoodTruck> lista = new ArrayList<FoodTruck>();
+	    try {
+	        iniciaOperacion();
+
+	        String hql = "select distinct f from FoodTruck f ";
+	        if (festival != null) {
+	            hql += "join f.festivales fest ";
+	        }
+	        hql += "where f.conexionElectrica = true ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
+	        }
+	        hql += "order by f.nombreComercial asc";
+
+	        Query<FoodTruck> query = session.createQuery(hql, FoodTruck.class);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
+	        }
+
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
+	
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, Festival festival) {
+	    List<FoodTruck> lista = new ArrayList<FoodTruck>();
+	    try {
+	        iniciaOperacion();
+
+	        String hql = "select distinct f from FoodTruck f ";
+	        if (festival != null) {
+	            hql += "join f.festivales fest ";
+	        }
+	        hql += "where f.superficie > :superficieMinima and f.conexionElectrica = true ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
+	        }
+	        hql += "order by f.superficie asc";
+
+	        Query<FoodTruck> query = session.createQuery(hql, FoodTruck.class);
+	        query.setParameter("superficieMinima", superficieMinima);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
+	        }
+
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
+	
+	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, Festival festival) {
+	    List<PuestoDesarmable> lista = new ArrayList<PuestoDesarmable>();
+	    try {
+	        iniciaOperacion();
+
+	        String hql = "select distinct p from PuestoDesarmable p ";
+	        if (festival != null) {
+	            hql += "join p.festivales fest ";
+	        }
+	        hql += "where p.cantidadCarpas > :cantidadMinima ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
+	        }
+	        hql += "order by p.cantidadCarpas asc";
+
+	        Query<PuestoDesarmable> query = session.createQuery(hql, PuestoDesarmable.class);
+	        query.setParameter("cantidadMinima", cantidadMinima);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
+	        }
+
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
+
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, Festival festival) {
+	    List<PuestoDesarmable> lista = new ArrayList<PuestoDesarmable>();
+	    try {
+	        iniciaOperacion();
+
+	        String hql = "select distinct p from PuestoDesarmable p ";
+	        if (festival != null) {
+	            hql += "join p.festivales fest ";
+	        }
+	        hql += "where p.cantidadCarpas > :cantidadMinima and p.tiempoMontaje < :tiempoMaximo ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
+	        }
+	        hql += "order by p.cantidadCarpas asc";
+
+	        Query<PuestoDesarmable> query = session.createQuery(hql, PuestoDesarmable.class);
+	        query.setParameter("cantidadMinima", cantidadMinima);
+	        query.setParameter("tiempoMaximo", tiempoMaximo);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
+	        }
+
+	        lista = query.getResultList();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return lista;
+	}
 }
