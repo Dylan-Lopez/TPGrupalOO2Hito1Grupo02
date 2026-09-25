@@ -112,8 +112,8 @@ public class UnidadVentaABM {
 	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima, festival);
 	}
 	
-	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, int idFestival) {
-	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima, idFestival);
+	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, Festival festival) {
+	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima, festival);
 	}
 	
 	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, int idFestival) {
