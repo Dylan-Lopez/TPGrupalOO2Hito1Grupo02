@@ -116,7 +116,7 @@ public class UnidadVentaABM {
 	    return dao.traerPuestosConMasDeXCarpas(cantidadMinima, festival);
 	}
 	
-	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, int idFestival) {
-	    return dao.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo, idFestival);
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, Festival festival) {
+	    return dao.traerPuestosCarpasYMontaje(cantidadMinima, tiempoMaximo, festival);
 	}
 }

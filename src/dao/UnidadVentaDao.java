@@ -315,26 +315,26 @@ public class UnidadVentaDao {
 	    return lista;
 	}
 
-	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, int idFestival) {
+	public List<PuestoDesarmable> traerPuestosCarpasYMontaje(int cantidadMinima, float tiempoMaximo, Festival festival) {
 	    List<PuestoDesarmable> lista = new ArrayList<PuestoDesarmable>();
 	    try {
 	        iniciaOperacion();
 
 	        String hql = "select distinct p from PuestoDesarmable p ";
-	        if (idFestival != -1) {
+	        if (festival != null) {
 	            hql += "join p.festivales fest ";
 	        }
 	        hql += "where p.cantidadCarpas > :cantidadMinima and p.tiempoMontaje < :tiempoMaximo ";
-	        if (idFestival != -1) {
-	            hql += "and fest.idFestival = :idFestival ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
 	        }
 	        hql += "order by p.cantidadCarpas asc";
 
 	        Query<PuestoDesarmable> query = session.createQuery(hql, PuestoDesarmable.class);
 	        query.setParameter("cantidadMinima", cantidadMinima);
 	        query.setParameter("tiempoMaximo", tiempoMaximo);
-	        if (idFestival != -1) {
-	            query.setParameter("idFestival", idFestival);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
 	        }
 
 	        lista = query.getResultList();
