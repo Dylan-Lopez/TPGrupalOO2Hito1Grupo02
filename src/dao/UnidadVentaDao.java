@@ -226,24 +226,24 @@ public class UnidadVentaDao {
 	    return lista;
 	}
 	
-	public List<FoodTruck> traerFoodTrucksConConexion(int idFestival) {
+	public List<FoodTruck> traerFoodTrucksConConexion(Festival festival) {
 	    List<FoodTruck> lista = new ArrayList<FoodTruck>();
 	    try {
 	        iniciaOperacion();
 
 	        String hql = "select distinct f from FoodTruck f ";
-	        if (idFestival != -1) {
+	        if (festival != null) {
 	            hql += "join f.festivales fest ";
 	        }
 	        hql += "where f.conexionElectrica = true ";
-	        if (idFestival != -1) {
-	            hql += "and fest.idFestival = :idFestival ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
 	        }
 	        hql += "order by f.nombreComercial asc";
 
 	        Query<FoodTruck> query = session.createQuery(hql, FoodTruck.class);
-	        if (idFestival != -1) {
-	            query.setParameter("idFestival", idFestival);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
 	        }
 
 	        lista = query.getResultList();
@@ -255,25 +255,25 @@ public class UnidadVentaDao {
 	    return lista;
 	}
 	
-	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, int idFestival) {
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, Festival festival) {
 	    List<FoodTruck> lista = new ArrayList<FoodTruck>();
 	    try {
 	        iniciaOperacion();
 
 	        String hql = "select distinct f from FoodTruck f ";
-	        if (idFestival != -1) {
+	        if (festival != null) {
 	            hql += "join f.festivales fest ";
 	        }
 	        hql += "where f.superficie > :superficieMinima and f.conexionElectrica = true ";
-	        if (idFestival != -1) {
-	            hql += "and fest.idFestival = :idFestival ";
+	        if (festival != null) {
+	            hql += "and fest = :festival ";
 	        }
 	        hql += "order by f.superficie asc";
 
 	        Query<FoodTruck> query = session.createQuery(hql, FoodTruck.class);
 	        query.setParameter("superficieMinima", superficieMinima);
-	        if (idFestival != -1) {
-	            query.setParameter("idFestival", idFestival);
+	        if (festival != null) {
+	            query.setParameter("festival", festival);
 	        }
 
 	        lista = query.getResultList();

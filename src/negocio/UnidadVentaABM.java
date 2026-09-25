@@ -104,12 +104,12 @@ public class UnidadVentaABM {
 	    return dao.traerPorSuperficieMayorA(superficieMinima, festival);
 	}
 	
-	public List<FoodTruck> traerFoodTrucksConConexion(int idFestival) {
-	    return dao.traerFoodTrucksConConexion(idFestival);
+	public List<FoodTruck> traerFoodTrucksConConexion(Festival festival) {
+	    return dao.traerFoodTrucksConConexion(festival);
 	}
 	
-	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, int idFestival) {
-	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima, idFestival);
+	public List<FoodTruck> traerFoodTrucksFiltrosConConexionYSuperficie(float superficieMinima, Festival festival) {
+	    return dao.traerFoodTrucksFiltrosConConexionYSuperficie(superficieMinima, festival);
 	}
 	
 	public List<PuestoDesarmable> traerPuestosConMasDeXCarpas(int cantidadMinima, int idFestival) {
