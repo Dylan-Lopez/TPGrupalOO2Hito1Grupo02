@@ -30,8 +30,16 @@ public class FestivalABM {
         return dao.traerConPlusElectricidad();
     }
     
-    public Festival traerFestivalYUnidades(int idFestival) {
-        return dao.traerFestivalYUnidades(idFestival);
+    public Festival traerFestivalYUnidades(Festival festival) {
+        return dao.traerFestivalYUnidades(festival);
+    }
+    
+    public List<Plato> traerPlatosPorFestival(Festival festival) {
+        return dao.traerPlatosPorFestival(festival);
+    }
+
+    public Plato traerPlatoMasCaroDeFestival(Festival festival) {
+        return dao.traerPlatoMasCaroDeFestival(festival);
     }
     
 
