@@ -85,17 +85,59 @@ public class FestivalDao {
         return lista;
     }
     
-    public Festival traerFestivalYUnidades(int idFestival) throws HibernateException {
+    public Festival traerFestivalYUnidades(Festival festival) throws HibernateException {
         Festival objeto = null;
         try {
             iniciarOperacion();
             String hql = "from Festival f where f.idFestival = :idFestival";
-            objeto = (Festival) session.createQuery(hql).setParameter("idFestival", idFestival).uniqueResult();
+            objeto = (Festival) session.createQuery(hql)
+                    .setParameter("idFestival", festival.getIdFestival())
+                    .uniqueResult();
             Hibernate.initialize(objeto.getUnidadesVenta());
         } finally {
             session.close();
         }
         return objeto;
+    }
+
+    public List<Plato> traerPlatosPorFestival(Festival festival) throws HibernateException {
+        List<Plato> lista = null;
+        try {
+            iniciarOperacion();
+            String hql = "select distinct p from Festival f " +
+                    "join f.unidadesVenta uv " +
+                    "join uv.lstPlatos p " +
+                    "where f.idFestival = :idFestival " +
+                    "order by p.nombre asc";
+            lista = session.createQuery(hql, Plato.class)
+                    .setParameter("idFestival", festival.getIdFestival())
+                    .getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+
+    public Plato traerPlatoMasCaroDeFestival(Festival festival) throws HibernateException {
+        Plato masCaro = null;
+        try {
+            iniciarOperacion();
+            String hql = "select distinct p from Festival f " +
+                    "join f.unidadesVenta uv " +
+                    "join uv.lstPlatos p " +
+                    "where f.idFestival = :idFestival " +
+                    "order by p.precio desc";
+            List<Plato> lista = session.createQuery(hql, Plato.class)
+                    .setParameter("idFestival", festival.getIdFestival())
+                    .setMaxResults(1)
+                    .getResultList();
+            if (!lista.isEmpty()) {
+                masCaro = lista.get(0);
+            }
+        } finally {
+            session.close();
+        }
+        return masCaro;
     }
     
 	
